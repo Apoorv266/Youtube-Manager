@@ -1,0 +1,47 @@
+
+
+/* Create a responsive, centered, three-column grid. */
+.card-container {
+	align-items: start;
+	display: grid;
+	grid-gap: 16px;
+	grid-template-columns: repeat(auto-fit, 300px);
+	justify-content: center;
+}
+
+/* --- Optional styles (to make this pen look nice) --- */
+body {
+	font-family: sans-serif;
+}
+
+header,
+footer {
+	text-align: center;
+}
+
+.card {
+	background-color: lightgrey;
+	border-radius: 5px;
+	color: white;
+	padding: 24px 0 16px;
+	text-align: center;
+	/* text-shadow: 1px 1px 0 #555; */
+    height: 300px;
+    color: black;
+}
+
+.fas {
+	font-size: 50px;
+}
+
+a{
+    height: 300px;
+    background-color: red;
+}
+
+@media (prefers-color-scheme: dark) {
+	html {
+		background-color: #111;
+		color: #fff;
+	}
+}

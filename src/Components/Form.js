@@ -36,6 +36,13 @@ const Form = ({toggleForm, settoggleForm}) => {
     {toggleForm && <div id="main-form">
     <div id="form-close"><h3 onClick={()=>settoggleForm(false)}>X</h3></div>
       <form id="form-body">
+      <label>Link:</label>
+        <input
+          type="text"
+          name="link"
+          value={formState.link}
+          onChange={handleformState}
+        />
         <label>Title:</label>
         <input
           type="text"
@@ -52,13 +59,7 @@ const Form = ({toggleForm, settoggleForm}) => {
           value={formState.description}
           onChange={handleformState}
         ></textarea>
-        <label>Link:</label>
-        <input
-          type="text"
-          name="link"
-          value={formState.link}
-          onChange={handleformState}
-        />
+       
         <label>Tags: (Seperated by Comma)</label>
         <input type="text" name="tags" value={formState.tags} onChange={handleformState}/>
         <button type="submit" value="Submit" onClick={handleSumbit}>
