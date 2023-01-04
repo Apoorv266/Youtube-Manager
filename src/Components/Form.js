@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import "../Style/Form.css";
 
-const Form = () => {
+const Form = ({toggleForm, settoggleForm}) => {
   const [formState, setformState] = useState({
     title: "",
     description: "",
+    link: "",
     tags: [],
   });
+
+  
 
   let name;
   let value;
@@ -29,7 +32,9 @@ const Form = () => {
   }
 
   return (
-    <div id="main-form">
+    <>
+    {toggleForm && <div id="main-form">
+    <div id="form-close"><h3 onClick={()=>settoggleForm(false)}>X</h3></div>
       <form id="form-body">
         <label>Title:</label>
         <input
@@ -47,13 +52,21 @@ const Form = () => {
           value={formState.description}
           onChange={handleformState}
         ></textarea>
-        <label>Tags:</label>
+        <label>Link:</label>
+        <input
+          type="text"
+          name="link"
+          value={formState.link}
+          onChange={handleformState}
+        />
+        <label>Tags: (Seperated by Comma)</label>
         <input type="text" name="tags" value={formState.tags} onChange={handleformState}/>
         <button type="submit" value="Submit" onClick={handleSumbit}>
-          Submit !
+          Add !
         </button>
       </form>
-    </div>
+    </div>}
+    </>
   );
 };
 
