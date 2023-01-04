@@ -8,10 +8,30 @@ const Form = () => {
     tags: [],
   });
 
-  function handleField() {}
+  let name;
+  let value;
+  function handleformState(e) {
+
+      name = e.target.name;
+    if (name == "tags") {
+        value = e.target.value.split(",")
+        setformState({...formState,   [name]: value})
+    }else{
+        value = e.target.value;
+        setformState({...formState, [name] : value})
+    }
+    
+  }
+
+ 
+//   function handleTags(e) {
+//     tagValue = e.taget.value
+//     setformState({...formState, tags : tagValue})
+//   }
 
   function handleSumbit(e) {
-    e.preventDefault
+    e.preventDefault();
+    console.log(formState);
   }
 
   return (
@@ -22,7 +42,7 @@ const Form = () => {
           type="text"
           name="title"
           value={formState.title}
-          onChange={(e)=> (setformState(e.target.name))}
+          onChange={handleformState}
         />
         <label>Description:</label>
         <textarea
@@ -31,10 +51,10 @@ const Form = () => {
           cols="30"
           rows="10"
           value={formState.description}
-          onChange={handleField}
+          onChange={handleformState}
         ></textarea>
         <label>Tags:</label>
-        <input type="text" name="name" value={formState.tags} />
+        <input type="text" name="tags" value={formState.tags} onChange={handleformState}/>
         <button type="submit" value="Submit" onClick={handleSumbit}>
           Submit !
         </button>
