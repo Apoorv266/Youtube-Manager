@@ -23,12 +23,6 @@ const Form = () => {
     
   }
 
- 
-//   function handleTags(e) {
-//     tagValue = e.taget.value
-//     setformState({...formState, tags : tagValue})
-//   }
-
   function handleSumbit(e) {
     e.preventDefault();
     console.log(formState);
