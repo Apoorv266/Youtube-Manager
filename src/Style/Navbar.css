@@ -1,0 +1,28 @@
+.main-navbar{
+    display: flex;
+    justify-content: space-between;
+    background-color: #FF0000;
+    align-items: center;
+    height: 80px;
+}
+
+a{
+    text-decoration: none;
+    margin-right: 20px;
+    color: black;
+    font-weight: 600;
+}
+
+.btn-main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+}
+.btn-main button{
+    width: 150px;
+    height: 30px;
+    border: none;
+    margin-top: 20px;
+    border: 2px solid black;
+}
