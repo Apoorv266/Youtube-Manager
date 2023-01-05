@@ -18,15 +18,11 @@ function App() {
   const [videoData, setvideoData] = useState([]);
 
   
-  function fetchFunc(e) {
-    e.preventDefault();
+  function fetchFunc(videoId) {
     settoggleForm(false)
-    fetch(
-      "https://youtube-search-and-download.p.rapidapi.com/video?id=rWUlDAHk1mM",
-      options
-    )
-      .then((response) => response.json())
-      .then((response) => {
+    console.log(videoId)
+    let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
+    fetch(url,options).then((response) => response.json()).then((response) => {
         setvideoData([...videoData,{
           id: videoData.length + 1,
           title: response.videoDetails.title,

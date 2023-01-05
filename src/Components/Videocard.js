@@ -9,8 +9,8 @@ const Videocard = ({ videoData }) => {
           <div className="card" key={item.id}>
             <img src={item.thumbnail} alt="" width="300px" height="200px" />
             <i className="fas fa-paint-brush"></i>
-            <h2>{item.title}</h2>
-            <p>{item.channel}</p>
+            <h3>{item.title}</h3>
+            <p>Channel : {item.channel}</p>
             <a href={item.link} id="vid-Link" target="_blank">
               Check link
             </a>

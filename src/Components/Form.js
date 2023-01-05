@@ -10,7 +10,6 @@ const Form = ({toggleForm, settoggleForm, fetchFunc}) => {
   });
 
   
-
   let name;
   let value;
   function handleformState(e) {
@@ -26,6 +25,11 @@ const Form = ({toggleForm, settoggleForm, fetchFunc}) => {
     
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    let videoId =  `${formState.link.slice(-11)}`
+    fetchFunc(videoId)
+  }
   return (
     <>
     {toggleForm && <div id="main-form">
@@ -57,7 +61,7 @@ const Form = ({toggleForm, settoggleForm, fetchFunc}) => {
        
         <label>Tags: (Seperated by Comma)</label>
         <input type="text" name="tags" value={formState.tags} onChange={handleformState}/>
-        <button type="submit" value="Submit" onClick={(e)=>fetchFunc(e)}>
+        <button type="submit" value="Submit" onClick={(e)=>handleSubmit(e)}>
           Add !
         </button>
       </form>
