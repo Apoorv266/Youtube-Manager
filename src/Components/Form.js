@@ -9,12 +9,12 @@ const options = {
 };
 
 const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
-  const [formState, setformState] = useState({
+  const [formState, setformState] = useState([{
     title: "",
     link: "",
     channel: "",
     tags: [],
-  });
+  }]);
 
 
   let name;
@@ -29,26 +29,29 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
       value = e.target.value;
       setformState({ ...formState, [name]: value })
     }
+    
 
-
-    // console.log(urlInput)
-    // console.log(formState)
   }
 
   function handleSubmit(e) {
     let videoId = `${formState.link.slice(-11)}`
     e.preventDefault();
-    fetchFunc(videoId)
+    fetchFunc(videoId, formState)
   }
 
-  function handleUrl(urlInput) {
-    
-
-    let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${urlInput}`
+  function handleUrl(urlInput, e) {
+    e.preventDefault();
+    let id = urlInput.slice(-11)
+   console.log(id)
+    let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${id}`
     console.log(url)
     fetch(url,options).then((response) => response.json()).then((response) => {
-      let newTitle =response.videoDetails.title
-    console.log(newTitle)
+   
+      setformState({ ...formState,
+         title: response.videoDetails.title,
+         channel :response.videoDetails.author,
+         tags: response.videoDetails.keywords
+         })
     })
  
   }
@@ -63,7 +66,6 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
             name="link"
             value={formState.link}
             onChange={handleformState}
-            onInput={()=>handleUrl(formState.link)}
           />
           <label>Title:</label>
           <input
@@ -82,6 +84,10 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
 
           <label>Tags: (Seperated by Comma)</label>
           <input type="text" name="tags" value={formState.tags} onChange={handleformState} />
+
+          <button onClick={(e)=>handleUrl(formState.link, e)}>
+            Fetch Details !
+          </button>
           <button type="submit" value="Submit" onClick={(e) => handleSubmit(e)}>
             Add !
           </button>
