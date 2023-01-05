@@ -1,71 +1,92 @@
 import React, { useState } from "react";
 import "../Style/Form.css";
+const options = {
+  method: "GET",
+  headers: {
+    "X-RapidAPI-Key": "181198e502msh6a0b4ccf137550fp12a4c2jsn27fdb5945ec7",
+    "X-RapidAPI-Host": "youtube-search-and-download.p.rapidapi.com",
+  },
+};
 
-const Form = ({toggleForm, settoggleForm, fetchFunc}) => {
+const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
   const [formState, setformState] = useState({
     title: "",
-    description: "",
     link: "",
+    channel: "",
     tags: [],
   });
 
-  
+
   let name;
   let value;
   function handleformState(e) {
 
-      name = e.target.name;
+    name = e.target.name;
     if (name == "tags") {
-        value = e.target.value.split(",")
-        setformState({...formState,   [name]: value})
-    }else{
-        value = e.target.value;
-        setformState({...formState, [name] : value})
+      value = e.target.value.split(",")
+      setformState({ ...formState, [name]: value })
+    } else {
+      value = e.target.value;
+      setformState({ ...formState, [name]: value })
     }
-    
+
+
+    // console.log(urlInput)
+    // console.log(formState)
   }
 
   function handleSubmit(e) {
+    let videoId = `${formState.link.slice(-11)}`
     e.preventDefault();
-    let videoId =  `${formState.link.slice(-11)}`
     fetchFunc(videoId)
+  }
+
+  function handleUrl(urlInput) {
+    
+
+    let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${urlInput}`
+    console.log(url)
+    fetch(url,options).then((response) => response.json()).then((response) => {
+      let newTitle =response.videoDetails.title
+    console.log(newTitle)
+    })
+ 
   }
   return (
     <>
-    {toggleForm && <div id="main-form">
-    <div id="form-close"><h3 onClick={()=>settoggleForm(false)}>X</h3></div>
-      <form id="form-body">
-      <label>Link:</label>
-        <input
-          type="text"
-          name="link"
-          value={formState.link}
-          onChange={handleformState}
-        />
-        <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={formState.title}
-          onChange={handleformState}
-        />
-        <label>Description:</label>
-        <textarea
-          name="description"
-          id=""
-          cols="30"
-          rows="10"
-          value={formState.description}
-          onChange={handleformState}
-        ></textarea>
-       
-        <label>Tags: (Seperated by Comma)</label>
-        <input type="text" name="tags" value={formState.tags} onChange={handleformState}/>
-        <button type="submit" value="Submit" onClick={(e)=>handleSubmit(e)}>
-          Add !
-        </button>
-      </form>
-    </div>}
+      {toggleForm && <div id="main-form">
+        <div id="form-close"><h3 onClick={() => settoggleForm(false)}>X</h3></div>
+        <form id="form-body">
+          <label>Link:</label>
+          <input
+            type="text"
+            name="link"
+            value={formState.link}
+            onChange={handleformState}
+            onInput={()=>handleUrl(formState.link)}
+          />
+          <label>Title:</label>
+          <input
+            type="text"
+            name="title"
+            value={formState.title}
+            onChange={handleformState}
+          />
+          <label>Channel:</label>
+          <input
+            type="text"
+            name="channel"
+            value={formState.channel}
+            onChange={handleformState}
+          />
+
+          <label>Tags: (Seperated by Comma)</label>
+          <input type="text" name="tags" value={formState.tags} onChange={handleformState} />
+          <button type="submit" value="Submit" onClick={(e) => handleSubmit(e)}>
+            Add !
+          </button>
+        </form>
+      </div>}
     </>
   );
 };

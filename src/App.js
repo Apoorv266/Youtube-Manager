@@ -20,7 +20,6 @@ function App() {
   
   function fetchFunc(videoId) {
     settoggleForm(false)
-    console.log(videoId)
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
     fetch(url,options).then((response) => response.json()).then((response) => {
         setvideoData([...videoData,{
