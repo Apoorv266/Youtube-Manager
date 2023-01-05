@@ -58,7 +58,7 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
     <>
       {toggleForm && (
         <div className="modal">
-          <div className="overlay" onClick={() => settoggleForm(false)}>
+          <div className="overlay" >
             <div id="main-form">
               <div id="form-close">
                 <h3 onClick={() => settoggleForm(false)}>X</h3>
