@@ -3,7 +3,7 @@
     justify-content: space-between;
     background-color: #FF0000;
     align-items: center;
-    height: 80px;
+    height: 15vh;
 }
 
 a{
@@ -26,4 +26,15 @@ a{
     border: none;
     margin-top: 20px;
     border: 2px solid black;
+}
+
+#logBtn{
+    border: none;
+    margin-right: 20px;
+    background-color:pink;
+    border-radius: 10px;
+}
+
+.title{
+    margin-left: 10px;
 }

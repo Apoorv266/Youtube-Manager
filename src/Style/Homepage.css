@@ -1,0 +1,17 @@
+@import url('https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@500&display=swap');
+.home-title{
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    
+}
+
+h1{
+    font-family: 'Zilla Slab', serif;
+}
+span{
+    color: red;
+    font-family: 'Zilla Slab', serif;
+}

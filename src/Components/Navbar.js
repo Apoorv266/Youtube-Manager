@@ -1,9 +1,9 @@
 import React from 'react'
-import { useAuth0 } from "@auth0/auth0-react";
 import "../Style/Navbar.css"
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
-  const { loginWithRedirect } = useAuth0();
+const Navbar = ({ logout}) => {
+  
   return (
     <>
     <div  className='main-navbar'>
@@ -12,10 +12,10 @@ const Navbar = () => {
         </div>
 
         <div>
-           <a href="/home">Home</a>
-           <a href="/playlist">My Playlist</a>
+        <Link to="/collection">Home</Link>
+           <a href="/">My Playlist</a>
            <a href="/explore">Explore</a>
-           <button onClick={() => loginWithRedirect()}>Log In</button>;
+           <button onClick={() => logout({ returnTo: window.location.origin })}  id="logBtn">Log Out</button>
         </div>
     </div>
     </>
