@@ -15,31 +15,30 @@ const options = {
 
 function App() {
   const [toggleForm, settoggleForm] = useState(false);
-  const [videoData, setvideoData] = useState({
-    id: 1,
-    title: "",
-    link: "",
-    channel: "",
-    tags: [],
-  });
+  const [videoData, setvideoData] = useState([]);
 
-  function testFunc() {
+  
+  function fetchFunc(e) {
+    e.preventDefault();
+    settoggleForm(false)
     fetch(
       "https://youtube-search-and-download.p.rapidapi.com/video?id=rWUlDAHk1mM",
       options
     )
       .then((response) => response.json())
       .then((response) => {
-        setvideoData({
-          ...videoData, 
-          id: response.videoId,
-          title: response.title,
-          link: `https://www.youtube.com/watch?v=${response.videoId}`,
-          channel:response.author ,
-          tags: response.keywords,
-        })
+        setvideoData([...videoData,{
+          id: videoData.length + 1,
+          title: response.videoDetails.title,
+          link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
+          channel:response.videoDetails.author ,
+          thumbnail:response.videoDetails.thumbnail.thumbnails[2].url,
+          tags: response.videoDetails.keywords,
+        }])
+        console.log(videoData)
       })
       .catch((err) => console.error(err));
+
   }
 
   return (
@@ -47,11 +46,9 @@ function App() {
       <div id="main-item">
         <Navbar />
         <Add settoggleForm={settoggleForm} />
-        <Form toggleForm={toggleForm} settoggleForm={settoggleForm} />
-        <Videocard />
+        <Form toggleForm={toggleForm} settoggleForm={settoggleForm} fetchFunc={fetchFunc}/>
+        <Videocard videoData={videoData}/>
       </div>
-
-      {/* <button onClick={testFunc}>Check !</button> */}
     </>
   );
 }

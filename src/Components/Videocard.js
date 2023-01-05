@@ -1,28 +1,23 @@
 import React from "react";
 import "../Style/Videocard.css";
-import data from "../Data/Data"
 
-const Videocard = () => {
+const Videocard = ({ videoData }) => {
   return (
     <section className="card-container">
-
-        {data.map(item =>{
-            return (
-<div className="card">
-		<i className="fas fa-paint-brush"></i>
-		<h1>{item.title}</h1>
-        <img src="../demo.jpg" alt="" srcset="" width='300px' height="200px"/>
-		<p>{item.channel}</p>
-        <a href="" id="vid-Link">Check link</a>
-	</div>
-            )
-        })}
-
-	
-
-
-</section>
-
+      {videoData.map((item) => {
+        return (
+          <div className="card" key={item.id}>
+            <img src={item.thumbnail} alt="" width="300px" height="200px" />
+            <i className="fas fa-paint-brush"></i>
+            <h2>{item.title}</h2>
+            <p>{item.channel}</p>
+            <a href={item.link} id="vid-Link" target="_blank">
+              Check link
+            </a>
+          </div>
+        );
+      })}
+    </section>
   );
 };
 

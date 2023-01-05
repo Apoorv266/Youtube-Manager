@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../Style/Form.css";
 
-const Form = ({toggleForm, settoggleForm}) => {
+const Form = ({toggleForm, settoggleForm, fetchFunc}) => {
   const [formState, setformState] = useState({
     title: "",
     description: "",
@@ -24,11 +24,6 @@ const Form = ({toggleForm, settoggleForm}) => {
         setformState({...formState, [name] : value})
     }
     
-  }
-
-  function handleSumbit(e) {
-    e.preventDefault();
-    console.log(formState);
   }
 
   return (
@@ -62,7 +57,7 @@ const Form = ({toggleForm, settoggleForm}) => {
        
         <label>Tags: (Seperated by Comma)</label>
         <input type="text" name="tags" value={formState.tags} onChange={handleformState}/>
-        <button type="submit" value="Submit" onClick={handleSumbit}>
+        <button type="submit" value="Submit" onClick={(e)=>fetchFunc(e)}>
           Add !
         </button>
       </form>
