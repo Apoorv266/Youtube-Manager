@@ -16,8 +16,9 @@ a{
 .btn-main{
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     width: 100vw;
+    margin: 10px -20px;
 }
 .btn-main button{
     width: 150px;

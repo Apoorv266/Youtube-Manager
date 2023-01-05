@@ -42,7 +42,7 @@ function App() {
         <Navbar />
         <Add settoggleForm={settoggleForm} />
         <Form toggleForm={toggleForm} settoggleForm={settoggleForm} fetchFunc={fetchFunc}/>
-        <Videocard videoData={videoData}/>
+        {!toggleForm && <Videocard videoData={videoData}/>}
       </div>
     </>
   );

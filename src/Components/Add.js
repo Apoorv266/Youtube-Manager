@@ -4,7 +4,7 @@ import "../Style/Navbar.css"
 const Add = ({settoggleForm}) => {
   return (
     <div className='btn-main'>
-    <button id='btn' onClick={()=>settoggleForm(true)}>Add New</button>
+    <img src={require("../Assets/117885.png")}  alt="" srcset="" width={"50px"} onClick={()=>settoggleForm(true)}/>
     </div>
   )
 }

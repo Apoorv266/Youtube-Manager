@@ -7,7 +7,27 @@
   margin: auto;
   height: 70vh;
   flex-direction: column;
+  border-radius: 30px;
+  position: absolute;
 }
+
+.modal, .overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.overlay {
+  background: rgba(49,49,49,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #form-body {
   display: flex;
   flex-direction: column;
@@ -19,25 +39,23 @@
 input {
   height: 30px;
   width: 400px;
+  border-radius: 10px;
+  border: none;
+  border: 1px solid black;
 }
 
-textarea{
-    height: 80px;
-    width: 400px;
+button {
+  width: 150px;
+  height: 30px;
+  border: none;
+  margin-top: 20px;
+  border: 1px solid black;
 }
 
-button{
-    width: 150px;
-    height: 30px;
-    border: none;
-    margin-top: 20px;
-    border: 1px solid black;
-}
-
-#form-close{
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    width: 450px;
-    cursor: pointer;
+#form-close {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 450px;
+  cursor: pointer;
 }
