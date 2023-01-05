@@ -42,9 +42,9 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
   function handleUrl(urlInput, e) {
     e.preventDefault();
     let id = urlInput.slice(-11)
-   console.log(id)
+   
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${id}`
-    console.log(url)
+    
     fetch(url,options).then((response) => response.json()).then((response) => {
    
       setformState({ ...formState,
@@ -66,6 +66,7 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
             name="link"
             value={formState.link}
             onChange={handleformState}
+            onBlur={(e)=>handleUrl(formState.link, e)}
           />
           <label>Title:</label>
           <input
@@ -85,9 +86,9 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
           <label>Tags: (Seperated by Comma)</label>
           <input type="text" name="tags" value={formState.tags} onChange={handleformState} />
 
-          <button onClick={(e)=>handleUrl(formState.link, e)}>
+          {/* <button onClick={(e)=>handleUrl(formState.link, e)}>
             Fetch Details !
-          </button>
+          </button> */}
           <button type="submit" value="Submit" onClick={(e) => handleSubmit(e)}>
             Add !
           </button>
