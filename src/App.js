@@ -29,7 +29,16 @@ function App() {
       options
     )
       .then((response) => response.json())
-      .then((response) => console.log(response))
+      .then((response) => {
+        setvideoData({
+          ...videoData, 
+          id: response.videoId,
+          title: response.title,
+          link: `https://www.youtube.com/watch?v=${response.videoId}`,
+          channel:response.author ,
+          tags: response.keywords,
+        })
+      })
       .catch((err) => console.error(err));
   }
 
