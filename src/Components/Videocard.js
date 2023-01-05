@@ -13,7 +13,7 @@ const Videocard = () => {
 		<h1>{item.title}</h1>
         <img src="../demo.jpg" alt="" srcset="" width='300px' height="200px"/>
 		<p>{item.channel}</p>
-        <a href="">Check link</a>
+        <a href="" id="vid-Link">Check link</a>
 	</div>
             )
         })}
