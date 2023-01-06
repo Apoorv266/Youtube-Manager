@@ -4,7 +4,7 @@ import React from "react";
 const Loading = () => (
   <div className="spinner">
 
-    <h3>Redirecting you to the login...</h3>
+    <h3>Redirecting...</h3>
   </div>
 );
 

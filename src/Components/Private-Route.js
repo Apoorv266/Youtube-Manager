@@ -5,7 +5,7 @@ import Loading from "./Loading";
 
 const PrivateRoute = ({ component, ...propsForComponent}) => {
     const Cp = withAuthenticationRequired(component, {
-      onRedirecting: () => <Loading/>,
+      onRedirecting: () => <Loading/>
     });
     
     return <Cp {...propsForComponent} />
