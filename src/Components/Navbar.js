@@ -14,7 +14,7 @@ const Navbar = ({ logout}) => {
         <div>
         <Link to="/collection">Home</Link>
            <a href="/">My Playlist</a>
-           <a href="/explore">Explore</a>
+           <Link to="/explore">Explore</Link>
            <button onClick={() => logout({ returnTo: window.location.origin })}  id="logBtn">Log Out</button>
         </div>
     </div>
