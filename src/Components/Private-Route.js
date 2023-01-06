@@ -1,18 +1,10 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
+
+import React from "react";
 import { withAuthenticationRequired } from '@auth0/auth0-react';
-import Loading from './Loading';
 
+const PrivateRoute = ({ component, ...propsForComponent}) => {
+    const Cp = withAuthenticationRequired(component);
+    return <Cp {...propsForComponent} />
+  }
 
-const ProtectedRoute = ({ component, ...args }) => (
-    <Route
-      component={withAuthenticationRequired(component, {
-        onRedirecting: () => <Loading />,
-        // returnTo: "/"
-        loginOptions: "/collection"
-      })}
-      {...args}
-    />
-  );
-
-export default ProtectedRoute;
+export default PrivateRoute;
