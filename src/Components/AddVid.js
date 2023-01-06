@@ -33,15 +33,23 @@ const AddVid = ({logout}) => {
         console.log(videoData)
       })
       .catch((err) => console.error(err));
+ 
+    }
 
-  }
+    function deleteCard(id) {
+  
+      let arr = videoData.filter(item =>{
+        return item.id !== id
+      })
+      setvideoData(arr)
+    }
   return (
     <>
       <div id="main-item">
         <Navbar logout={logout}/>
         <Add settoggleForm={settoggleForm} />
         <Form toggleForm={toggleForm} settoggleForm={settoggleForm} fetchFunc={fetchFunc}/>
-        {!toggleForm && <Videocard videoData={videoData}/>}
+        {!toggleForm && <Videocard videoData={videoData} deleteCard={deleteCard}/>}
       </div>
     </>
   )

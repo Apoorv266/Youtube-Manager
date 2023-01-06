@@ -1,7 +1,7 @@
 import React from "react";
 import "../Style/Videocard.css";
 
-const Videocard = ({ videoData }) => {
+const Videocard = ({ videoData, deleteCard }) => {
   return (
     <section className="card-container">
       {videoData.map((item) => {
@@ -16,7 +16,7 @@ const Videocard = ({ videoData }) => {
                 Check link
               </a>
               <div>
-                <button id="deleteBtn">Delete</button>
+                <button id="deleteBtn" onClick={(e)=> deleteCard(item.id)}>Delete</button>
                 <button id="addtolistBtn">Add to playlist</button>
               </div>
             </div>
