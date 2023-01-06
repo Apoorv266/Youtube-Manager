@@ -13,7 +13,7 @@ const HomeNavbar = ({loginWithRedirect, logout, isAuthenticated}) => {
 
         <div>
         {isAuthenticated ? <button onClick={() => logout({ returnTo: window.location.origin })}  id="logBtn">Log Out</button> :
-        <button onClick={() => loginWithRedirect()} id="logBtn">Log In</button>}
+        <button onClick={() => loginWithRedirect()} id="loginBtn">Log In</button>}
         </div>
     </div>
     </>

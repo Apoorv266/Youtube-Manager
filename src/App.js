@@ -6,6 +6,7 @@ import Homepage from "./Components/Homepage";
 import { useAuth0 } from "@auth0/auth0-react";
 import Explore from "./Components/Explore";
 import ProtectedRoute from "./Components/Private-Route";
+import Playlist from "./Components/Playlist";
 
 function App() {
 
@@ -21,7 +22,10 @@ function App() {
         <Route path="/explore" element={<ProtectedRoute component={Explore}  />} />
     
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} />} />
+
+        <Route path="/playlist" element={<ProtectedRoute component={Playlist}  />} />
       </Routes>
+
     </>
   );
 }

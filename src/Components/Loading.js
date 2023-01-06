@@ -3,8 +3,8 @@ import React from "react";
 
 const Loading = () => (
   <div className="spinner">
-    {/* <img src={loading} alt="Loading" /> */}
-    <h1>loading...</h1>
+
+    <h3>Redirecting you to the login...</h3>
   </div>
 );
 
