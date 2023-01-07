@@ -1,0 +1,36 @@
+.col-main {
+    flex: 1;  
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }  
+  
+  
+  /* Responsive: */
+  
+  @media only screen and (min-width: 640px) {
+    .layout {
+      display: flex;
+      gap: 10px;
+    }
+  }
+  
+  /* etc */
+  
+  .container {
+    max-width: 60em;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  
+  .col {
+    padding: 1em;
+    margin: 0 2px 2px 0;
+    background: #b3e888;
+  }
+  
+
+  .layout{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }

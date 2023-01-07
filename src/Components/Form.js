@@ -8,7 +8,7 @@ const options = {
   },
 };
 
-const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
+const Form = ({closeFormFunc, fetchFunc }) => {
   const [formState, setformState] = useState([
     {
       title: "",
@@ -56,12 +56,12 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
   }
   return (
     <>
-      {toggleForm && (
+     
         <div className="modal">
           <div className="overlay" >
             <div id="main-form">
               <div id="form-close">
-                <h3 onClick={() => settoggleForm(false)}>X</h3>
+                <h3 onClick={closeFormFunc}>X</h3>
               </div>
               <form id="form-body">
                 <label>Link:</label>
@@ -106,7 +106,7 @@ const Form = ({ toggleForm, settoggleForm, fetchFunc }) => {
             </div>
           </div>
         </div>
-      )}
+      
     </>
   );
 };

@@ -1,27 +1,31 @@
 import React from 'react'
 import "../Style/AddPlaylistForm.css"
 
-const AddPlaylistForm = ({ closePlayFunc }) => {
+const NewPlaylistForm = ({ CloseNewPlaylistFunc, input, setinput, newplaylistFunc }) => {
+    
+
     return (
         <>
             {<div className="modal">
                 <div className="overlay" >
                     <div id="main-playForm">
                         <div id="form-close">
-                            <h3 onClick={closePlayFunc}>X</h3>
+                            <h3 onClick={CloseNewPlaylistFunc}>X</h3>
                         </div>
                         <form id="form-body">
-                            <label>Select PLaylist:</label>
+                            <label>Add playlist Name:</label>
                             <input
                                 type="text"
-                                name="link"
+                                name="playlistName"
+                                value={input}
+                                onChange={(e) => setinput(e.target.value)}
                             />
                             <button
                                 type="submit"
                                 value="Submit"
-
+                                onClick={(e) => newplaylistFunc(e)}
                             >
-                                Add to Playlist !
+                                Add New Playlist !
                             </button>
                         </form>
                     </div>
@@ -31,4 +35,4 @@ const AddPlaylistForm = ({ closePlayFunc }) => {
     )
 }
 
-export default AddPlaylistForm
+export default NewPlaylistForm

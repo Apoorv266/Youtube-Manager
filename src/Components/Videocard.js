@@ -1,11 +1,12 @@
 import React,{useState} from "react";
 import "../Style/Videocard.css";
-import AddPlaylistForm from "./AddPlaylistForm";
+import AddToPlaylistForm from "./AddToPlaylistForm";
 
-const Videocard = ({ videoData, deleteCard }) => {
+const Videocard = ({ videoData, deleteCard, captureFunc , playlistName}) => {
   const [toggleplayForm, settoggleplayForm] = useState(false)
 
-  function togglePlayFunc() {
+  function togglePlayFunc(e) {
+    e.preventDefault()
     settoggleplayForm(true)
   }
 
@@ -27,10 +28,11 @@ const Videocard = ({ videoData, deleteCard }) => {
               </a>
               <div>
                 <button id="deleteBtn" onClick={(e)=> deleteCard(item.id)}>Delete</button>
-                <button id="addtolistBtn" onClick={togglePlayFunc}>Add to playlist</button>
+                <button id="addtolistBtn" onClick={
+                  (e)=>togglePlayFunc(e)}>Add to playlist</button>
               </div>
             </div>
-            {toggleplayForm && <AddPlaylistForm closePlayFunc={closePlayFunc}/>}
+            {toggleplayForm && <AddToPlaylistForm closePlayFunc={closePlayFunc} captureFunc={captureFunc} item={item}/>}
           </>
         );
       })}

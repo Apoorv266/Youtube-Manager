@@ -10,3 +10,7 @@
     border-radius: 30px;
     position: absolute;
 }
+
+#selectPlaylist{
+    width: 400px;
+}

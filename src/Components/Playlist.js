@@ -1,13 +1,42 @@
-
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from './Navbar'
 import Add from "./Add"
+import NewPlaylistForm from "./NewPlaylistForm"
+import PlaylistViewCard from './PlaylistViewCard'
 
-const Playlist = () => {
+
+const Playlist = ({ playlistName,handlePlayListFunc, logout}) => {
+
+  const [toggleNewPlaylistForm, settoggleNewPlaylistForm] = useState(false)
+  const [input, setinput] = useState("")
+
+  function openNewPlaylistFunc() {
+    settoggleNewPlaylistForm(true)
+  }
+
+  function CloseNewPlaylistFunc() {
+    settoggleNewPlaylistForm(false)
+  }
+
+
+  function newplaylistFunc(e) {
+    e.preventDefault()
+    settoggleNewPlaylistForm(false)
+    handlePlayListFunc([ ...playlistName,{val : input , id:playlistName.length + 1 }])
+    console.log(playlistName)
+}
+
+
   return (
+
     <>
-    <Navbar/>
-    <Add/>
+     <Navbar logout={logout}/>
+
+      <Add openFormFunc={openNewPlaylistFunc} />
+
+      {toggleNewPlaylistForm && <NewPlaylistForm CloseNewPlaylistFunc={CloseNewPlaylistFunc} input={input} setinput={setinput} newplaylistFunc={newplaylistFunc} />}
+
+      <PlaylistViewCard playlistName={playlistName} />
     </>
   )
 }
