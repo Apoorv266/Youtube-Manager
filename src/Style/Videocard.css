@@ -19,9 +19,8 @@ footer {
 }
 
 .card {
-	background-color: lightgrey;
+	background-color: lightgray;
 	border-radius: 5px;
-	color: white;
 	padding: 24px 0 16px;
 	text-align: center;
 	/* text-shadow: 1px 1px 0 #555; */

@@ -1,12 +1,13 @@
 
 import React from 'react'
 import Navbar from './Navbar'
+import Add from "./Add"
 
 const Playlist = () => {
   return (
     <>
     <Navbar/>
-    <h1>Playlist</h1>
+    <Add/>
     </>
   )
 }

@@ -1,7 +1,17 @@
-import React from "react";
+import React,{useState} from "react";
 import "../Style/Videocard.css";
+import AddPlaylistForm from "./AddPlaylistForm";
 
 const Videocard = ({ videoData, deleteCard }) => {
+  const [toggleplayForm, settoggleplayForm] = useState(false)
+
+  function togglePlayFunc() {
+    settoggleplayForm(true)
+  }
+
+  function closePlayFunc() {
+    settoggleplayForm(false)
+  }
   return (
     <section className="card-container">
       {videoData.map((item) => {
@@ -17,9 +27,10 @@ const Videocard = ({ videoData, deleteCard }) => {
               </a>
               <div>
                 <button id="deleteBtn" onClick={(e)=> deleteCard(item.id)}>Delete</button>
-                <button id="addtolistBtn">Add to playlist</button>
+                <button id="addtolistBtn" onClick={togglePlayFunc}>Add to playlist</button>
               </div>
             </div>
+            {toggleplayForm && <AddPlaylistForm closePlayFunc={closePlayFunc}/>}
           </>
         );
       })}
