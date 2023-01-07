@@ -32,7 +32,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc , playlistName}) => {
                   (e)=>togglePlayFunc(e)}>Add to playlist</button>
               </div>
             </div>
-            {toggleplayForm && <AddToPlaylistForm closePlayFunc={closePlayFunc} captureFunc={captureFunc} item={item}/>}
+            {toggleplayForm && <AddToPlaylistForm closePlayFunc={closePlayFunc} captureFunc={captureFunc} item={item} playlistName={playlistName}/>}
           </>
         );
       })}

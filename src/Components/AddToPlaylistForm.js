@@ -14,9 +14,10 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, item, playlistName }) =
                             <label>Select PLaylist:</label>
                             <select name="selectPlaylist" id="selectPlaylist">
 
-                                {/* {playlistName.map((item) => {
-                                    return <option key={item.id} value="volvo">{item.val}</option>
-                                })} */}
+
+                                { playlistName.length > 0 ? playlistName.map((item) => {
+                                    return <option key={item.id} value={item.val}>{item.val}</option>
+                                }) :  <option key={item.id} value="No playlist added">Add a playlist first</option>}
 
 
                             </select>

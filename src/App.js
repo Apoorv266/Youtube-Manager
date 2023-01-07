@@ -67,6 +67,7 @@ function App() {
 
     function handlePlayListFunc(val) {
       setplaylistName(val)
+      console.log(playlistName)
     }
 
 
