@@ -14,7 +14,7 @@ const PlaylistComponent = ({playlistName, playlistObj}) => {
             <div className="card" key={arr.id}>
               <img src={arr.thumbnail} alt="" width="300px" height="200px" id="thumbnail"/>
               <i className="fas fa-paint-brush"></i>
-              <h3>{arr.title}</h3>
+              <h3>{arr.title.substring(0,50)}...</h3>
               <p>Channel : {arr.channel}</p>
               <a href={arr.link} id="vid-Link" target="_blank">
                 Check link

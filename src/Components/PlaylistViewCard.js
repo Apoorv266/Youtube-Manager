@@ -4,12 +4,6 @@ import "../Style/PlaylistViewCard.css";
 import PlaylistComponent from "./PlaylistComponent";
 
 const PlaylistViewCard = ({ playlistName, playlistVideoFunc }) => {
-  let tempid = "d";
-
-
-  let arr = [{ demo: "d", url: "https://1" }, { demo: "we", url: "https://2" }, { demo: "d", url: "https://3" }, { demo: "d", url: "https://4" }, { demo: "qwewq", url: "https://5" }]
-
-
 
   return (
     <>

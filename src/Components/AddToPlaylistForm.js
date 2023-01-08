@@ -1,19 +1,26 @@
 import React, { useState } from 'react'
 import "../Style/AddPlaylistForm.css"
+// import { v4 as uuid } from "uuid";
 
-const AddToPlaylistForm = ({ closePlayFunc, captureFunc, item, playlistName }) => {
+const AddToPlaylistForm = ({ closePlayFunc, captureFunc, testValue, playlistName }) => {
 
     const [dropdown, setdropdown] = useState('')
-   
+
 
     const handleChange = (event) => {
         setdropdown(event.target.value);
-      };
+    };
 
+
+    function handleClick(e, item, val) {
+        e.preventDefault()
+        console.log(item)
+    }
 
     return (
         <>
-            {<div className="modal">
+        {/* {console.log(item)} */}
+            {<div className="modal" key={testValue.id}>
                 <div className="overlay" >
                     <div id="main-playForm">
                         <div id="form-close">
@@ -21,20 +28,20 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, item, playlistName }) =
                         </div>
                         <form id="form-body">
                             <label>Select PLaylist:</label>
-                            <select name="selectPlaylist" id="selectPlaylist" value={dropdown} onChange={handleChange}>
+                            <select name="selectPlaylist" id="selectPlaylist" value={dropdown} onChange={handleChange}
+                            >
 
-                            <option  >Select a playlist</option>
-                                { playlistName.length > 0 ? playlistName.map((item) => {
+                                <option  >Select a playlist</option>
+                                {playlistName.length > 0 ? playlistName.map((item) => {
                                     return <option key={item.id} >{item.val}</option>
-                                }) :  <option key={item.id} value={dropdown}>Add a playlist first</option>}
+                                }) : <option key={testValue.id} value={dropdown}>Add a playlist first</option>}
 
 
                             </select>
                             <button
                                 type="submit"
                                 value="Submit"
-                            
-                                onClick={(e) => captureFunc(e, item, dropdown)}
+                                onClick={(e) => captureFunc(e, testValue, dropdown)}
                             >
                                 Add to Playlist !
                             </button>

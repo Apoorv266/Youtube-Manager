@@ -9,6 +9,7 @@ import ProtectedRoute from "./Components/Private-Route";
 import Playlist from "./Components/Playlist";
 import PlaylistComponent from "./Components/PlaylistComponent";
 
+
 const options = {
   method: "GET",
   headers: {
@@ -43,20 +44,21 @@ function App() {
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
     fetch(url,options).then((response) => response.json()).then((response) => {
         setvideoData([...videoData,{
-          id: videoData.length + 1,
+          id: Math.floor(100000 + Math.random() * 900000),
           title: formValue.title,
           link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
           channel:formValue.channel ,
           thumbnail:response.videoDetails.thumbnail.thumbnails[2].url,
           tags: response.videoDetails.keywords,
         }])
-        console.log(videoData)
+        // console.log(videoData)
       })
       .catch((err) => console.error(err));
  
     }
 
     function deleteCard(id) {
+      console.log(videoData)
       let arr = videoData.filter(item =>{
         return item.id !== id
       })
@@ -65,12 +67,16 @@ function App() {
 
     function captureFunc(e , item,  dropdown) {
       e.preventDefault()
+      console.log("item" , item)
+
       if (dropdown !== '' && dropdown !== 'Select a playlist') {
             let obj = item
+            console.log(obj)
              obj.playlist = dropdown
-             console.log(obj);
-             setplaylistObj([...playlistObj, obj])
-            console.log(playlistObj)
+             let val = Math.floor(100000 + Math.random() * 900000)
+            //  obj.id = 
+             setplaylistObj([...playlistObj, {...obj, id : val}])
+            console.log("obj",obj)
       }
       else{
           // notification
@@ -80,12 +86,13 @@ function App() {
 
     function handlePlayListFunc(val) {
       setplaylistName(val)
-      console.log(playlistName)
+      // console.log(playlistName)
     }
 
     function playlistVideoFunc(name) {
+      console.log(playlistObj);
       setplaylistVideoCardName(name)
-      console.log(playlistVideoCardName);
+      // console.log(playlistVideoCardName);
     }
 
     
