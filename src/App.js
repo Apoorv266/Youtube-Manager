@@ -7,6 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Explore from "./Components/Explore";
 import ProtectedRoute from "./Components/Private-Route";
 import Playlist from "./Components/Playlist";
+import PlaylistComponent from "./Components/PlaylistComponent";
 
 const options = {
   method: "GET",
@@ -23,7 +24,9 @@ function App() {
   const [toggleForm, settoggleForm] = useState(false);
   const [videoData, setvideoData] = useState([]);
   const [playlistName, setplaylistName] = useState([])
- 
+  const [playlistVideoCardName, setplaylistVideoCardName] = useState("")
+  const [playlistObj, setplaylistObj] = useState([])
+  
   
  
 
@@ -60,9 +63,19 @@ function App() {
       setvideoData(arr)
     }
 
-    function captureFunc(e , item) {
+    function captureFunc(e , item,  dropdown) {
       e.preventDefault()
-      console.log(item)
+      if (dropdown !== '' && dropdown !== 'Select a playlist') {
+            let obj = item
+             obj.playlist = dropdown
+             console.log(obj);
+             setplaylistObj([...playlistObj, obj])
+            console.log(playlistObj)
+      }
+      else{
+          // notification
+          console.log("select a playlist first")
+      }
     }
 
     function handlePlayListFunc(val) {
@@ -70,6 +83,10 @@ function App() {
       console.log(playlistName)
     }
 
+    function playlistVideoFunc(name) {
+      setplaylistVideoCardName(name)
+      console.log(playlistVideoCardName);
+    }
 
     
   return (
@@ -82,7 +99,10 @@ function App() {
     
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName}/>} />
 
-        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc}/>} />
+        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc}/>} />
+     
+
+      <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent }  playlistVideoCardName={playlistVideoCardName}/>} />
       </Routes>
 
     </>

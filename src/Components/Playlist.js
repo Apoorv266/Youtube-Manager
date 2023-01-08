@@ -5,7 +5,7 @@ import NewPlaylistForm from "./NewPlaylistForm"
 import PlaylistViewCard from './PlaylistViewCard'
 
 
-const Playlist = ({ playlistName,handlePlayListFunc, logout}) => {
+const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc}) => {
 
   const [toggleNewPlaylistForm, settoggleNewPlaylistForm] = useState(false)
   const [input, setinput] = useState("")
@@ -36,7 +36,7 @@ const Playlist = ({ playlistName,handlePlayListFunc, logout}) => {
 
       {toggleNewPlaylistForm && <NewPlaylistForm CloseNewPlaylistFunc={CloseNewPlaylistFunc} input={input} setinput={setinput} newplaylistFunc={newplaylistFunc} />}
 
-      <PlaylistViewCard playlistName={playlistName} />
+      <PlaylistViewCard playlistName={playlistName} playlistVideoFunc={playlistVideoFunc} />
     </>
   )
 }
