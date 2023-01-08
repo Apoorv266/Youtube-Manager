@@ -102,7 +102,7 @@ function App() {
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc}/>} />
      
 
-      <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent }  playlistVideoCardName={playlistVideoCardName}/>} />
+      <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent }  playlistName={playlistVideoCardName} playlistObj={playlistObj}/>}  />
       </Routes>
 
     </>
