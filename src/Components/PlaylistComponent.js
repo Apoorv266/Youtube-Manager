@@ -21,13 +21,12 @@ const PlaylistComponent = ({playlistName, playlistObj, dltVideoPlaylist}) => {
               </a>
               <div>
                 <button id="deleteBtn" onClick={()=>dltVideoPlaylist(arr.id, playlistName)}>Delete</button>
-              
+                </div>
               </div>
-            </div>
             )
-        }
-      })}
-    </section>
+          }
+        })}
+      </section>
     </>
   )
 }

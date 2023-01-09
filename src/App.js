@@ -67,9 +67,7 @@ function App() {
       let obj = item
       obj.playlist = dropdown
       let val = Math.floor(100000 + Math.random() * 900000)
-
-      setplaylistObj([...playlistObj, { ...obj, id: val }])
-
+      setplaylistObj([...playlistObj, { ...obj, id: val }]) 
       // to get number of videos in each playlist
       let lengthArr = playlistObj.filter(item => {
         return item.playlist === dropdown
