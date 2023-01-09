@@ -19,13 +19,14 @@ footer {
 }
 
 .card {
-	background-color: lightgray;
+	background-color: #3f4042
+	;
 	border-radius: 5px;
 	padding: 24px 0 16px;
 	text-align: center;
 	/* text-shadow: 1px 1px 0 #555; */
     height: 400px;
-    color: black;
+    color: white;
 
 }
 
