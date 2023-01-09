@@ -1,5 +1,5 @@
 import "./App.css";
-import React, {useState} from "react";
+import React, { useState } from "react";
 import AddVid from "./Components/AddVid";
 import { Routes, Route } from 'react-router-dom';
 import Homepage from "./Components/Homepage";
@@ -27,9 +27,9 @@ function App() {
   const [playlistName, setplaylistName] = useState([])
   const [playlistVideoCardName, setplaylistVideoCardName] = useState("")
   const [playlistObj, setplaylistObj] = useState([])
-  
-  
- 
+
+
+
 
   function openFormFunc() {
     settoggleForm(true)
@@ -42,74 +42,84 @@ function App() {
   function fetchFunc(videoId, formValue) {
     settoggleForm(false)
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
-    fetch(url,options).then((response) => response.json()).then((response) => {
-        setvideoData([...videoData,{
-          id: Math.floor(100000 + Math.random() * 900000),
-          title: formValue.title,
-          link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
-          channel:formValue.channel ,
-          thumbnail:response.videoDetails.thumbnail.thumbnails[2].url,
-          tags: response.videoDetails.keywords,
-        }])
-        // console.log(videoData)
-      })
+    fetch(url, options).then((response) => response.json()).then((response) => {
+      setvideoData([...videoData, {
+        id: Math.floor(100000 + Math.random() * 900000),
+        title: formValue.title,
+        link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
+        channel: formValue.channel,
+        thumbnail: response.videoDetails.thumbnail.thumbnails[2].url,
+        tags: response.videoDetails.keywords,
+      }])
+      // console.log(videoData)
+    })
       .catch((err) => console.error(err));
- 
-    }
 
-    function deleteCard(id) {
-      console.log(videoData)
-      let arr = videoData.filter(item =>{
-        return item.id !== id
+  }
+
+  function deleteCard(id) {
+    console.log(videoData)
+    let arr = videoData.filter(item => {
+      return item.id !== id
+    })
+    setvideoData(arr)
+  }
+
+  function captureFunc(e, item, dropdown) {
+    e.preventDefault()
+    console.log("item", item)
+
+    if (dropdown !== '' && dropdown !== 'Select a playlist') {
+      let obj = item
+      obj.playlist = dropdown
+      let val = Math.floor(100000 + Math.random() * 900000)
+
+      setplaylistObj([...playlistObj, { ...obj, id: val }])
+
+
+  
+      // to get number of videos in each playlist
+      let lengthArr = playlistObj.filter(item => {
+        return item.playlist === dropdown
       })
-      setvideoData(arr)
+      playlistName.map((item) => {
+        if (item.val == dropdown) {
+          item.no = lengthArr.length + 1
+        }
+      })
     }
-
-    function captureFunc(e , item,  dropdown) {
-      e.preventDefault()
-      console.log("item" , item)
-
-      if (dropdown !== '' && dropdown !== 'Select a playlist') {
-            let obj = item
-            console.log(obj)
-             obj.playlist = dropdown
-             let val = Math.floor(100000 + Math.random() * 900000)
-            //  obj.id = 
-             setplaylistObj([...playlistObj, {...obj, id : val}])
-            console.log("obj",obj)
-      }
-      else{
-          // notification
-          console.log("select a playlist first")
-      }
+    else {
+      // notification
+      console.log("select a playlist first")
     }
+  }
 
-    function handlePlayListFunc(val) {
-      setplaylistName(val)
-      // console.log(playlistName)
-    }
+  function handlePlayListFunc(val) {
+    setplaylistName(val)
+    // console.log(playlistName)
+  }
 
-    function playlistVideoFunc(name) {
-      console.log(playlistObj);
-      setplaylistVideoCardName(name)
-      // console.log(playlistVideoCardName);
-    }
+  function playlistVideoFunc(name) {
+    console.log(playlistObj);
+    setplaylistVideoCardName(name)
+    // console.log(playlistVideoCardName);
+  }
 
-    
+
   return (
     <>
       <Routes>
 
         <Route path="/" element={<Homepage logout={logout} loginWithRedirect={loginWithRedirect} isAuthenticated={isAuthenticated} />} />
-        
-        <Route path="/explore" element={<ProtectedRoute component={Explore}  />} />
-    
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName}/>} />
 
-        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc}/>} />
-     
+        <Route path="/explore" element={<ProtectedRoute component={Explore} />} />
 
-      <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent }  playlistName={playlistVideoCardName} playlistObj={playlistObj}/>}  />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
+
+        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} />} />
+
+
+        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistName={playlistVideoCardName} playlistObj={playlistObj} />} />
       </Routes>
 
     </>

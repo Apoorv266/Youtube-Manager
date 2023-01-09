@@ -22,8 +22,8 @@ const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc})
   function newplaylistFunc(e) {
     e.preventDefault()
     settoggleNewPlaylistForm(false)
-    handlePlayListFunc(() => ([ ...playlistName,{val : input , id:playlistName.length + 1 }]))
-    console.log(playlistName)
+    handlePlayListFunc(() => ([ ...playlistName,{val : input , id:playlistName.length + 1 , no : 0}]))
+    // console.log(playlistName)
 }
 
 
