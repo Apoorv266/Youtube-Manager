@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import "../Style/AddPlaylistForm.css"
 // import { v4 as uuid } from "uuid";
 
-const AddToPlaylistForm = ({ closePlayFunc, captureFunc, testValue, playlistName }) => {
+const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistName }) => {
 
     const [dropdown, setdropdown] = useState('')
 
@@ -11,16 +11,10 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, testValue, playlistName
         setdropdown(event.target.value);
     };
 
-
-    function handleClick(e, item, val) {
-        e.preventDefault()
-        console.log(item)
-    }
-
     return (
         <>
         {/* {console.log(item)} */}
-            {<div className="modal" key={testValue.id}>
+            {<div className="modal" key={itemToForm.id}>
                 <div className="overlay" >
                     <div id="main-playForm">
                         <div id="form-close">
@@ -34,14 +28,14 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, testValue, playlistName
                                 <option  >Select a playlist</option>
                                 {playlistName.length > 0 ? playlistName.map((item) => {
                                     return <option key={item.id} >{item.val}</option>
-                                }) : <option key={testValue.id} value={dropdown}>Add a playlist first</option>}
+                                }) : <option key={itemToForm.id} value={dropdown}>Add a playlist first</option>}
 
 
                             </select>
                             <button
                                 type="submit"
                                 value="Submit"
-                                onClick={(e) => captureFunc(e, testValue, dropdown)}
+                                onClick={(e) => captureFunc(e, itemToForm, dropdown)}
                             >
                                 Add to Playlist !
                             </button>

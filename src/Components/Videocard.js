@@ -4,11 +4,11 @@ import AddToPlaylistForm from "./AddToPlaylistForm";
 
 const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
   const [toggleplayForm, settoggleplayForm] = useState(false)
-  const [testValue, settestValue] = useState("")
+  const [itemToForm, setitemToForm] = useState("")
 
   function togglePlayFunc(e, item) {
     e.preventDefault()
-    settestValue(item);
+    setitemToForm(item);
     settoggleplayForm(true)
   }
 
@@ -33,7 +33,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                 <button id="addtolistBtn" onClick={
                   (e) => togglePlayFunc(e, item)}>Add to playlist</button>
               </div>
-              {toggleplayForm && <AddToPlaylistForm closePlayFunc={closePlayFunc} captureFunc={captureFunc} testValue={testValue} playlistName={playlistName} />}
+              {toggleplayForm && <AddToPlaylistForm closePlayFunc={closePlayFunc} captureFunc={captureFunc} itemToForm={itemToForm} playlistName={playlistName} />}
             </div>
           </>
         );
