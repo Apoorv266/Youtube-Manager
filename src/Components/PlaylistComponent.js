@@ -2,7 +2,7 @@ import React from 'react'
 import Navbar from './Navbar'
 import "../Style/Videocard.css";
 
-const PlaylistComponent = ({playlistName, playlistObj}) => {
+const PlaylistComponent = ({playlistName, playlistObj, dltVideoPlaylist}) => {
   return (
     <>
     <Navbar/>
@@ -20,7 +20,8 @@ const PlaylistComponent = ({playlistName, playlistObj}) => {
                 Check link
               </a>
               <div>
-                <button id="deleteBtn">Delete</button>
+                <button id="deleteBtn" onClick={()=>dltVideoPlaylist(arr.id, playlistName)}>Delete</button>
+              
               </div>
             </div>
             )

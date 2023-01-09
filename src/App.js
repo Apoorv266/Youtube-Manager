@@ -58,7 +58,6 @@ function App() {
   }
 
   function deleteCard(id) {
-    console.log(videoData)
     let arr = videoData.filter(item => {
       return item.id !== id
     })
@@ -87,6 +86,7 @@ function App() {
           item.no = lengthArr.length + 1
         }
       })
+      console.log(playlistObj)
     }
     else {
       // notification
@@ -96,13 +96,25 @@ function App() {
 
   function handlePlayListFunc(val) {
     setplaylistName(val)
-    // console.log(playlistName)
   }
 
   function playlistVideoFunc(name) {
-    console.log(playlistObj);
     setplaylistVideoCardName(name)
-    // console.log(playlistVideoCardName);
+  }
+
+  function dltVideoPlaylist(id, playlistNameVal) {
+    console.log(id)
+    console.log(playlistName);
+    playlistName.map((item) => {
+      if (item.val == playlistNameVal) {
+        item.no = item.no - 1
+      }
+    })
+    let arr = playlistObj.filter(item => {
+      return item.id !== id
+    })
+    setplaylistObj(arr)
+   console.log(playlistObj)
   }
 
 
@@ -119,7 +131,7 @@ function App() {
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} />} />
 
 
-        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistName={playlistVideoCardName} playlistObj={playlistObj} />} />
+        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistName={playlistVideoCardName} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist}/>} />
       </Routes>
 
     </>
