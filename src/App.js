@@ -25,7 +25,7 @@ function App() {
   const [toggleForm, settoggleForm] = useState(false);
   const [videoData, setvideoData] = useState([]);
   const [playlistName, setplaylistName] = useState([])
-  const [playlistVideoCardName, setplaylistVideoCardName] = useState("")
+  const [playlistVideoCardId, setplaylistVideoCardId] = useState("")
   const [playlistObj, setplaylistObj] = useState([])
 
   function openFormFunc() {
@@ -63,15 +63,17 @@ function App() {
 
   function captureFunc(e, item, dropdown) {
     e.preventDefault()
+    console.log(dropdown);
+    console.log(playlistName);
     if (dropdown !== '' && dropdown !== 'Select a playlist') {
       let obj = item
-      obj.playlist = dropdown
+      obj.playlistId = dropdown
       let val = Math.floor(100000 + Math.random() * 900000)
       setplaylistObj([...playlistObj, { ...obj, id: val }]) 
 
       // to get number of videos in each playlist
       let lengthArr = playlistObj.filter(item => {
-        return item.playlist === dropdown
+        return item.playlistId === dropdown
       })
       playlistName.map((item) => {
         if (item.id == dropdown) {
@@ -89,15 +91,17 @@ function App() {
     setplaylistName(val)
   }
 
-  function playlistVideoFunc(name) {
-    setplaylistVideoCardName(name)
+  function playlistVideoFunc(id) {
+    setplaylistVideoCardId(id)
   }
 
   // delete video from playlist
-  function dltVideoPlaylist(id, playlistNameVal) {
+  function dltVideoPlaylist(id, playlistNameId) {
+    console.log(id);
+    console.log(playlistNameId);
     // reducing video number on playlist
     playlistName.map((item) => {
-      if (item.val == playlistNameVal) {
+      if (item.id == playlistNameId) {
         item.no = item.no - 1
       }
     })
@@ -110,7 +114,7 @@ function App() {
 
 
   // delete playlist function
-  function dltPlaylist(id, playlistNameVal) {
+  function dltPlaylist(id) {
 
     // removing playlist from playlistName array
     let playListArr = playlistName.filter(item => {
@@ -120,7 +124,7 @@ function App() {
 
     // removing videos in that playlist from playlistObj array
     let playlistVideoarr = playlistObj.filter(item => {
-      return item.playlist !== playlistNameVal
+      return item.playlistId !== id
     })
     setplaylistObj(playlistVideoarr)
   }
@@ -139,7 +143,7 @@ function App() {
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} />} />
 
 
-        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistName={playlistVideoCardName} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />
+        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />
       </Routes>
 
     </>

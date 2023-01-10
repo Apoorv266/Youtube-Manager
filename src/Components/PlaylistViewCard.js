@@ -18,7 +18,7 @@ const PlaylistViewCard = ({ playlistName, playlistVideoFunc, dltPlaylist }) => {
                       <div
                         onClick={() => playlistVideoFunc( item.id)}
                         id="CardClickArea" >
-                        <h1>{item.id}.</h1>
+                        <h1>#</h1>
                         <h1>{item.val}</h1>
                         <div>
                           <p>
@@ -29,7 +29,7 @@ const PlaylistViewCard = ({ playlistName, playlistVideoFunc, dltPlaylist }) => {
                         </div>
                       </div>
                     </Link>
-                    <button onClick={() => dltPlaylist(item.id, item.val)}>
+                    <button onClick={() => dltPlaylist(item.id)}>
                       Delete
                     </button>
                   </div>

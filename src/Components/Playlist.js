@@ -22,7 +22,7 @@ const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, 
   function newplaylistFunc(e) {
     e.preventDefault()
     settoggleNewPlaylistForm(false)
-    handlePlayListFunc(() => ([ ...playlistName,{val : input , id:playlistName.length + 1 , no : 0}]))
+    handlePlayListFunc(() => ([ ...playlistName,{val : input , id:Math.floor(100000 + Math.random() * 900000) , no : 0}]))
     // console.log(playlistName)
 }
 

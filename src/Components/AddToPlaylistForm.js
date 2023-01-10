@@ -8,7 +8,7 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistNam
 
 
     const handleChange = (event) => {
-        setdropdown(event.target.value);
+        setdropdown(Number(event.target.value));
     };
 
 
