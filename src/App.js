@@ -131,12 +131,18 @@ function App() {
 
   //change name of playlist function
   function editplaylistFunc(id, val) {
+    if (val === "") {
+      // error
+      console.log("playlist name cant be empty")
+    }
+    else{
     playlistName.map((item)=>{
       if (item.id == id) {
         item.val = val
       }
     })
     setInputView(false)
+  }
   }
 
   // display input for playlist name change Function
