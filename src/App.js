@@ -139,7 +139,7 @@ function App() {
     setInputView(false)
   }
 
-  // display playlist Function
+  // display input for playlist name change Function
   function displayInputPlaylist(id) {
     setplaylistId(id)
     setInputView(true)
