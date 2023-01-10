@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "../Style/PlaylistViewCard.css";
 
 const PlaylistViewCard = ({ playlistName, playlistVideoFunc, dltPlaylist }) => {
+
   
   return (
     <>
@@ -15,7 +16,7 @@ const PlaylistViewCard = ({ playlistName, playlistVideoFunc, dltPlaylist }) => {
                   <div className="col col-main">
                     <Link to={"/playlist/1"}>
                       <div
-                        onClick={() => playlistVideoFunc(item.val, item.id)}
+                        onClick={() => playlistVideoFunc( item.id)}
                         id="CardClickArea" >
                         <h1>{item.id}.</h1>
                         <h1>{item.val}</h1>

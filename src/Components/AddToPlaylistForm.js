@@ -11,6 +11,7 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistNam
         setdropdown(event.target.value);
     };
 
+
     return (
         <>
         {/* {console.log(item)} */}
@@ -27,7 +28,7 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistNam
 
                                 <option  >Select a playlist</option>
                                 {playlistName.length > 0 ? playlistName.map((item) => {
-                                    return <option key={item.id} >{item.val}</option>
+                                    return <option key={item.id} value={item.id} >{item.val}</option>
                                 }) : <option key={itemToForm.id} value={dropdown}>Add a playlist first</option>}
 
 

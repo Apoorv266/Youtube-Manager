@@ -9,7 +9,7 @@ const PlaylistComponent = ({playlistName, playlistObj, dltVideoPlaylist}) => {
     
     <section className="card-container">
       {playlistObj.map((arr)=>{
-        if (arr.playlist === playlistName) {
+        if (arr.playlist == playlistName) {
           return (
             <div className="card" key={arr.id}>
               <img src={arr.thumbnail} alt="" width="300px" height="200px" id="thumbnail"/>
