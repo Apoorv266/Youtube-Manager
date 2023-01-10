@@ -6,9 +6,11 @@ const PlaylistViewCard = ({
   playlistName,
   playlistVideoFunc,
   dltPlaylist,
-  editPlaylist,
+  displayInputPlaylist,
   InputView,
-  cancelEditFunc,playlistId
+  cancelEditFunc,
+  playlistId,
+  editplaylistFunc,
 }) => {
   const [inputValue, setinputValue] = useState("");
 
@@ -16,9 +18,7 @@ const PlaylistViewCard = ({
     setinputValue(e.target.value);
   }
 
-  function test() {
-    console.log(inputValue);
-  }
+
   return (
     <>
       <div className="container">
@@ -59,17 +59,31 @@ const PlaylistViewCard = ({
                       </div>
                     </Link>
                     <div id="btnBox">
-                     {InputView && playlistId === item.id?   <div><div onClick={test} id="dltBtn">
-                        Done
-                      </div>
-                       <div  id="editBtn" onClick={()=>cancelEditFunc(item.id)}>
-                        Cncl
-                      </div> </div> : <div><div onClick={() => dltPlaylist(item.id)} id="dltBtn">
-                        Dlt
-                      </div>
-                      <div onClick={(e) => editPlaylist(item.id)} id="editBtn">
-                        Edit
-                      </div></div>}
+                      {InputView && playlistId === item.id ? (
+                        <div>
+                          <div id="dltBtn" onClick={() => editplaylistFunc(item.id, inputValue)}>
+                            Done
+                          </div>
+                          <div
+                            id="editBtn"
+                            onClick={() => cancelEditFunc(item.id)}
+                          >
+                            Cncl
+                          </div>
+                        </div>
+                      ) : (
+                        <div>
+                          <div onClick={() => dltPlaylist(item.id)} id="dltBtn">
+                            Dlt
+                          </div>
+                          <div
+                            onClick={(e) => displayInputPlaylist(item.id)}
+                            id="editBtn"
+                          >
+                            Edit
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

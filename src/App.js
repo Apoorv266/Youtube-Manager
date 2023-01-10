@@ -71,7 +71,7 @@ function App() {
       let obj = item
       obj.playlistId = dropdown
       let val = Math.floor(100000 + Math.random() * 900000)
-      setplaylistObj([...playlistObj, { ...obj, id: val }]) 
+      setplaylistObj([...playlistObj, { ...obj, id: val }])
 
       // to get number of videos in each playlist
       let lengthArr = playlistObj.filter(item => {
@@ -131,16 +131,30 @@ function App() {
   }
 
 
-  // edit playlist name
-  function editPlaylist( id) {
+  //change name of playlist function
+  function editplaylistFunc(id, val) {
+    playlistName.map((item)=>{
+      if (item.id == id) {
+        item.val = val
+      }
+    })
+    setInputView(false)
+    console.log(playlistObj);
+  }
+
+  // display playlist Function
+  function displayInputPlaylist(id) {
     setplaylistId(id)
     setInputView(true)
   }
 
+  // cancel edit function
   function cancelEditFunc(id) {
     setplaylistId(id)
     setInputView(false)
   }
+
+  
 
   return (
     <>
@@ -152,7 +166,7 @@ function App() {
 
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
 
-        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} editPlaylist={editPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId}/>} />
+        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc}/>}  />
 
 
         <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />

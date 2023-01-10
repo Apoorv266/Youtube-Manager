@@ -5,7 +5,7 @@ import NewPlaylistForm from "./NewPlaylistForm"
 import PlaylistViewCard from './PlaylistViewCard'
 
 
-const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, dltPlaylist, editPlaylist, InputView, cancelEditFunc, playlistId}) => {
+const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, dltPlaylist, displayInputPlaylist, InputView, cancelEditFunc, playlistId, editplaylistFunc}) => {
 
   const [toggleNewPlaylistForm, settoggleNewPlaylistForm] = useState(false)
   const [input, setinput] = useState("")
@@ -39,7 +39,7 @@ let year = date.getFullYear();
 
       {toggleNewPlaylistForm && <NewPlaylistForm CloseNewPlaylistFunc={CloseNewPlaylistFunc} input={input} setinput={setinput} newplaylistFunc={newplaylistFunc} />}
 
-      <PlaylistViewCard playlistName={playlistName} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} editPlaylist={editPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId}/>
+      <PlaylistViewCard playlistName={playlistName} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc}/>
     </>
   )
 }
