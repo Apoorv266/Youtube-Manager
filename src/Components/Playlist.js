@@ -5,7 +5,7 @@ import NewPlaylistForm from "./NewPlaylistForm"
 import PlaylistViewCard from './PlaylistViewCard'
 
 
-const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, dltPlaylist}) => {
+const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, dltPlaylist, editPlaylist, InputView, cancelEditFunc, playlistId}) => {
 
   const [toggleNewPlaylistForm, settoggleNewPlaylistForm] = useState(false)
   const [input, setinput] = useState("")
@@ -22,8 +22,11 @@ const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, 
   function newplaylistFunc(e) {
     e.preventDefault()
     settoggleNewPlaylistForm(false)
-    handlePlayListFunc(() => ([ ...playlistName,{val : input , id:Math.floor(100000 + Math.random() * 900000) , no : 0}]))
-    // console.log(playlistName)
+    const date = new Date();
+let day = date.getDate();
+let month = date.getMonth() + 1;
+let year = date.getFullYear();
+    handlePlayListFunc(() => ([ ...playlistName,{val : input , id:Math.floor(100000 + Math.random() * 900000) , no : 0, date: `${day}-${month}-${year}`}]))
 }
 
 
@@ -36,7 +39,7 @@ const Playlist = ({ playlistName,handlePlayListFunc, logout, playlistVideoFunc, 
 
       {toggleNewPlaylistForm && <NewPlaylistForm CloseNewPlaylistFunc={CloseNewPlaylistFunc} input={input} setinput={setinput} newplaylistFunc={newplaylistFunc} />}
 
-      <PlaylistViewCard playlistName={playlistName} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist}/>
+      <PlaylistViewCard playlistName={playlistName} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} editPlaylist={editPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId}/>
     </>
   )
 }

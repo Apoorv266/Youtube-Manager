@@ -27,6 +27,8 @@ function App() {
   const [playlistName, setplaylistName] = useState([])
   const [playlistVideoCardId, setplaylistVideoCardId] = useState("")
   const [playlistObj, setplaylistObj] = useState([])
+  const [InputView, setInputView] = useState(false)
+  const [playlistId, setplaylistId] = useState(0)
 
   function openFormFunc() {
     settoggleForm(true)
@@ -115,7 +117,6 @@ function App() {
 
   // delete playlist function
   function dltPlaylist(id) {
-
     // removing playlist from playlistName array
     let playListArr = playlistName.filter(item => {
       return item.id !== id
@@ -130,6 +131,17 @@ function App() {
   }
 
 
+  // edit playlist name
+  function editPlaylist( id) {
+    setplaylistId(id)
+    setInputView(true)
+  }
+
+  function cancelEditFunc(id) {
+    setplaylistId(id)
+    setInputView(false)
+  }
+
   return (
     <>
       <Routes>
@@ -140,7 +152,7 @@ function App() {
 
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
 
-        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} />} />
+        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} editPlaylist={editPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId}/>} />
 
 
         <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />

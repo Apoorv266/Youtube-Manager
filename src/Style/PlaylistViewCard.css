@@ -37,9 +37,62 @@
 
  
   #CardClickArea{
-    width: 250px;
     display: flex;
-    gap: 40px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    width: 300px;
+    height: 60px;
+  }
+
+  #title{
+    display: flex;
     align-items: center;
     justify-content: center;
+    gap: 10px;
+    
+  }
+
+  #playlistDetail{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  #btnBox{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100px;
+
+  }
+
+  #dltBtn{
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid orange;
+    cursor: pointer;
+  }
+
+  #editBtn{
+    background-color: black;
+    color: white;
+    height: 30px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  #inputbox{
+    width: 350px;
+    height: 30px;
   }
