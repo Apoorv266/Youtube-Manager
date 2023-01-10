@@ -65,8 +65,6 @@ function App() {
 
   function captureFunc(e, item, dropdown) {
     e.preventDefault()
-    console.log(dropdown);
-    console.log(playlistName);
     if (dropdown !== '' && dropdown !== 'Select a playlist') {
       let obj = item
       obj.playlistId = dropdown
@@ -101,13 +99,13 @@ function App() {
   function dltVideoPlaylist(id, playlistNameId) {
     console.log(id);
     console.log(playlistNameId);
-    // reducing video number on playlist
+    // reducing video number from playlistName array
     playlistName.map((item) => {
       if (item.id == playlistNameId) {
         item.no = item.no - 1
       }
     })
-    // removing video in playlist 
+    // removing video of that playlist from playlistObj array
     let arr = playlistObj.filter(item => {
       return item.id !== id
     })
@@ -139,7 +137,6 @@ function App() {
       }
     })
     setInputView(false)
-    console.log(playlistObj);
   }
 
   // display playlist Function
