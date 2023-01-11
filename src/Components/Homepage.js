@@ -8,7 +8,7 @@ const Homepage = ({ loginWithRedirect, logout, isAuthenticated }) => {
     <>
      {isAuthenticated ? <Navbar logout={logout}/> : <HomeNavbar loginWithRedirect={loginWithRedirect} logout={logout} isAuthenticated={isAuthenticated} />}
       <div className='home-title'>
-        <h1>One Stop destination for all your<br /><span>Youtube Needs</span></h1>
+        <h1 id='homepage-title'>One Stop destination for all your<br /><span>Youtube Needs</span></h1>
       </div>
     </>
   )

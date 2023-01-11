@@ -4,7 +4,7 @@ import AddVid from "./Components/AddVid";
 import { Routes, Route } from 'react-router-dom';
 import Homepage from "./Components/Homepage";
 import { useAuth0 } from "@auth0/auth0-react";
-import Explore from "./Components/Explore";
+import Explore from "./Components/Explore/Explore";
 import ProtectedRoute from "./Components/Private-Route";
 import Playlist from "./Components/Playlist";
 import PlaylistComponent from "./Components/PlaylistComponent";
