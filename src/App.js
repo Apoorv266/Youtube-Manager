@@ -29,6 +29,8 @@ function App() {
   const [playlistObj, setplaylistObj] = useState([])
   const [InputView, setInputView] = useState(false)
   const [playlistId, setplaylistId] = useState(0)
+  const [videoIds, setvideoIds] = useState([])
+  const [exprVideoArray, setexprVideoArray] = useState([])
 
   function openFormFunc() {
     settoggleForm(true)
@@ -40,6 +42,8 @@ function App() {
 
   function fetchFunc(videoId, formValue) {
     settoggleForm(false)
+    setvideoIds([...videoIds, videoId])
+    // console.log(videoIds);
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
     fetch(url, options).then((response) => response.json()).then((response) => {
       setvideoData([...videoData, {
@@ -52,14 +56,19 @@ function App() {
       }])
     })
       .catch((err) => console.error(err));
-
+      console.log(videoIds);
   }
 
-  function deleteCard(id) {
+  function deleteCard(id, videoId) {
     let arr = videoData.filter(item => {
       return item.id !== id
     })
     setvideoData(arr)
+
+    console.log(videoId);
+    let newArr = videoIds.filter(item=>item !== videoId )
+    setvideoIds(newArr)
+    console.log(videoIds);
   }
 
 
@@ -157,6 +166,9 @@ function App() {
     setInputView(false)
   }
 
+
+
+
   
 
   return (
@@ -165,7 +177,7 @@ function App() {
 
         <Route path="/" element={<Homepage logout={logout} loginWithRedirect={loginWithRedirect} isAuthenticated={isAuthenticated} />} />
 
-        <Route path="/explore" element={<ProtectedRoute component={Explore} />} />
+        <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} />} />
 
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
 

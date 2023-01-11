@@ -29,7 +29,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                 Check link
               </a>
               <div>
-                <button id="deleteBtn" onClick={(e) => deleteCard(item.id)}>Delete</button>
+                <button id="deleteBtn" onClick={(e) => deleteCard(item.id, item.link.slice(-11))}>Delete</button>
                 <button id="addtolistBtn" onClick={
                   (e) => togglePlayFunc(e, item)}>Add to playlist</button>
               </div>
