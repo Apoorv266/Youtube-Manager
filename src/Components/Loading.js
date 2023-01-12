@@ -4,7 +4,7 @@ import React from "react";
 const Loading = () => (
   <div className="spinner">
 
-    <h3 style={{color:"white", textAlign: "center"}}>Preparing your prefrences...</h3>
+    <h3 style={{color:"white", textAlign: "center"}}>Preparing your preferences...</h3>
   </div>
 );
 

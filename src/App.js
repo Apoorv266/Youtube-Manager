@@ -30,7 +30,6 @@ function App() {
   const [InputView, setInputView] = useState(false)
   const [playlistId, setplaylistId] = useState(0)
   const [videoIds, setvideoIds] = useState([])
-  const [exprVideoArray, setexprVideoArray] = useState([])
 
   function openFormFunc() {
     settoggleForm(true)
@@ -42,7 +41,7 @@ function App() {
 
   function fetchFunc(videoId, formValue) {
     settoggleForm(false)
-
+    console.log(formValue)
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
     fetch(url, options).then((response) => response.json()).then((response) => {
       let newId = Math.floor(100000 + Math.random() * 900000)
@@ -180,8 +179,26 @@ function App() {
   }
 
 
+// add explore videos to collections
+  function explVidFunc(vidtitle, channelName, thumbnailUrl, videoIdVal) {
+    let newId = Math.floor(100000 + Math.random() * 900000)
+      let obj = {
+        id: newId,
+        title: vidtitle,
+        link: `https://www.youtube.com/watch?v=${videoIdVal}`,
+        channel: channelName,
+        thumbnail: thumbnailUrl,
+        tags: [],
+      }
+      setvideoData([...videoData, obj])
 
-
+      let explObj = {
+        id: newId, 
+        videoId: videoIdVal
+      }
+      setvideoIds([...videoIds, explObj])
+      console.log(videoIds);
+  }
 
 
   return (
@@ -190,7 +207,7 @@ function App() {
 
         <Route path="/" element={<Homepage logout={logout} loginWithRedirect={loginWithRedirect} isAuthenticated={isAuthenticated} />} />
 
-        <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} />} />
+        <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} />} />
 
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
 

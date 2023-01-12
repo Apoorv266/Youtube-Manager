@@ -19,7 +19,7 @@ const options = {
 // 	}
 // };
 
-const Explore = ({ videoIds }) => {
+const Explore = ({ videoIds , explVidFunc}) => {
   const [videoArray, setvideoArray] = useState([]);
   const [display, setdisplay] = useState(false);
 
@@ -60,7 +60,7 @@ const Explore = ({ videoIds }) => {
   return (
     <>
       <Navbar />
-      {display ? <ExploreCard videoArray={videoArray} /> : <Loading />}
+      {display ? <ExploreCard videoArray={videoArray} explVidFunc={explVidFunc} /> : <Loading />}
     </>
   );
 };

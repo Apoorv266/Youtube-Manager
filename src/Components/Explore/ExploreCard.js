@@ -1,13 +1,14 @@
 import React from "react";
 import "../../Style/ExploreCard.css";
 
-const ExploreCard = ({ videoArray }) => {
+const ExploreCard = ({ videoArray, explVidFunc }) => {
   return (
     <div>
-      {videoArray.map((recipe) => {
+      {videoArray.map((val) => {
         return (
           <section className="explorecard-container">
-            {recipe.url.map((item) => {
+            {val.url.map((item) => {
+              console.log(item);
               return (
                 <div className="explorecard" key={item.snippet.publishTime}>
                   <img
@@ -18,11 +19,13 @@ const ExploreCard = ({ videoArray }) => {
                     id="thumbnail"
                   />
                   <i className="fas fa-paint-brush"></i>
-                  <h3 id="exploretitle">{item.snippet.title.substring(0, 50)}</h3>
-                  <p>Channel : {item.snippet.channelTitle}</p>
-                  <a href={`https://www.youtube.com/watch?v=${item.snippet.videoId}`} id="vid-Link" target="_blank">
+                  <h3 id="exploretitle">{item.snippet.title.substring(0, 40)}</h3>
+                  <p>Channel : {item.snippet.channelTitle.substring(0,30)}</p>
+                  <a href={`https://www.youtube.com/watch?v=${item.id.videoId}`} id="vid-Link" target="_blank">
                     Check link
                   </a>
+
+                 <button id="addtocollectionbtn" onClick={()=>explVidFunc(item.snippet.title,item.snippet.channelTitle, item.snippet.thumbnails.medium.url,item.id.videoId )}>Add to collections</button>
                 </div>
               );
             })}
