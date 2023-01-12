@@ -31,7 +31,13 @@ const Explore = ({ videoIds }) => {
         .then((response) => response.json())
         .then((response) => {
           let newId = Math.floor(100000 + Math.random() * 900000);
-          let urlArray = response.items.slice(0, 8);
+          let urlArray 
+          if (videoIds.length <= 1) {
+            urlArray = response.items.slice(0, 24);
+          }
+          else{
+            urlArray = response.items.slice(0, 12);
+          }
           let obj = {
             id: newId,
             url: urlArray,

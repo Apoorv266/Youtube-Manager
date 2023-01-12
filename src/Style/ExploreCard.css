@@ -1,0 +1,23 @@
+.explorecard{
+    background-color: #3f4042;
+	border-radius: 5px;
+	padding: 24px 0 16px;
+	text-align: center;
+	/* text-shadow: 1px 1px 0 #555; */
+    height: 300px;
+    color: white;
+    width: 200px;
+}
+
+#exploretitle{
+    font-size: 15px;
+}
+
+.explorecard-container{
+    align-items: start;
+	display: grid;
+	grid-gap: 16px;
+	grid-template-columns: repeat(auto-fit, 200px);
+	justify-content: center;
+	margin-top: 25px;
+}
