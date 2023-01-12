@@ -54,7 +54,21 @@ function App() {
         thumbnail: response.videoDetails.thumbnail.thumbnails[2].url,
         tags: response.videoDetails.keywords,
       }])
-      setvideoIds([...videoIds, {id : newId,videoId : videoId }])
+
+
+      // preparing explore video id with are unique
+      let hasMatch = false;
+      for (var i = 0; i < videoIds.length; ++i) {
+        let currentVal = videoIds[i]
+        if (currentVal.videoId === videoId) {
+          hasMatch = true
+          break
+        }
+      }
+
+      if (!hasMatch) {
+        setvideoIds([...videoIds, { id: newId, videoId: videoId }])
+      }
     })
       .catch((err) => console.error(err));
   }
@@ -65,11 +79,11 @@ function App() {
     })
     setvideoData(arr)
 
-    let newArr = videoIds.filter(item=>{
+    let newArr = videoIds.filter(item => {
       return item.id !== id
     })
     setvideoIds(newArr)
-   
+
   }
 
 
@@ -143,14 +157,14 @@ function App() {
       // error
       console.log("playlist name cant be empty")
     }
-    else{
-    playlistName.map((item)=>{
-      if (item.id == id) {
-        item.val = val
-      }
-    })
-    setInputView(false)
-  }
+    else {
+      playlistName.map((item) => {
+        if (item.id == id) {
+          item.val = val
+        }
+      })
+      setInputView(false)
+    }
   }
 
   // display input for playlist name change Function
@@ -168,7 +182,7 @@ function App() {
 
 
 
-  
+
 
   return (
     <>
@@ -180,7 +194,7 @@ function App() {
 
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
 
-        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc}/>}  />
+        <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
 
         <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />
