@@ -8,7 +8,6 @@ const ExploreCard = ({ videoArray, explVidFunc }) => {
         return (
           <section className="explorecard-container">
             {val.url.map((item) => {
-              console.log(item);
               return (
                 <div className="explorecard" key={item.snippet.publishTime}>
                   <img
