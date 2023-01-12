@@ -19,7 +19,7 @@ const options = {
 // 	}
 // };
 
-const Explore = ({ videoIds, explVidFunc }) => {
+const Explore = ({ videoIds, explVidFunc,logout }) => {
   const [videoArray, setvideoArray] = useState([]);
   const [display, setdisplay] = useState(false);
 
@@ -62,7 +62,7 @@ const Explore = ({ videoIds, explVidFunc }) => {
 
   return (
     <>
-      <Navbar />
+      <Navbar logout={logout}/>
       {display && <Loading />}
       {videoIds.length === 0 ? (
         <h3 style={{color:"white", textAlign: "center"}}>Add videos to collection first !</h3>
