@@ -42,33 +42,34 @@ function App() {
 
   function fetchFunc(videoId, formValue) {
     settoggleForm(false)
-    setvideoIds([...videoIds, videoId])
-    // console.log(videoIds);
+
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
     fetch(url, options).then((response) => response.json()).then((response) => {
+      let newId = Math.floor(100000 + Math.random() * 900000)
       setvideoData([...videoData, {
-        id: Math.floor(100000 + Math.random() * 900000),
+        id: newId,
         title: formValue.title,
         link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
         channel: formValue.channel,
         thumbnail: response.videoDetails.thumbnail.thumbnails[2].url,
         tags: response.videoDetails.keywords,
       }])
+      setvideoIds([...videoIds, {id : newId,videoId : videoId }])
     })
       .catch((err) => console.error(err));
-      console.log(videoIds);
   }
 
-  function deleteCard(id, videoId) {
+  function deleteCard(id) {
     let arr = videoData.filter(item => {
       return item.id !== id
     })
     setvideoData(arr)
 
-    console.log(videoId);
-    let newArr = videoIds.filter(item=>item !== videoId )
+    let newArr = videoIds.filter(item=>{
+      return item.id !== id
+    })
     setvideoIds(newArr)
-    console.log(videoIds);
+   
   }
 
 
@@ -106,8 +107,6 @@ function App() {
 
   // delete video from playlist
   function dltVideoPlaylist(id, playlistNameId) {
-    console.log(id);
-    console.log(playlistNameId);
     // reducing video number from playlistName array
     playlistName.map((item) => {
       if (item.id == playlistNameId) {

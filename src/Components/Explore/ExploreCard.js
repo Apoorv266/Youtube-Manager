@@ -7,8 +7,10 @@ const ExploreCard = ({ videoArray }) => {
         return (
           <section className="card-container">
             {recipe.url.map((item) => {
+              // console.log(item)
               return (
-                <div className="card" key={item.id}>
+                <div className="card" key={item.snippet.publishTime
+                }>
                   <img
                     src={item.snippet.thumbnails.medium.url}
                     alt=""

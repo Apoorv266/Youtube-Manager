@@ -11,13 +11,22 @@ const options = {
   },
 };
 
+// const options = {
+// 	method: 'GET',
+// 	headers: {
+// 		'X-RapidAPI-Key': '181198e502msh6a0b4ccf137550fp12a4c2jsn27fdb5945ec7',
+// 		'X-RapidAPI-Host': 'youtube-v3-alternative.p.rapidapi.com'
+// 	}
+// };
+
 const Explore = ({ videoIds }) => {
   const [videoArray, setvideoArray] = useState([]);
   const [display, setdisplay] = useState(false);
 
   function fetchFunc() {
     videoIds.map((item) => {
-      let url = `https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=${item}&part=id%2Csnippet&type=video&maxResults=5`;
+      let url = `https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=${item.videoId}&part=id%2Csnippet&type=video&maxResults=5`;
+      // let url = `https://youtube-v3-alternative.p.rapidapi.com/video?id=${item}`
       fetch(url, options)
         .then((response) => response.json())
         .then((response) => {
