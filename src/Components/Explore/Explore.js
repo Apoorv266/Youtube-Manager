@@ -48,7 +48,7 @@ const Explore = ({ videoIds, explVidFunc,logout }) => {
             copyarr.unshift(obj);
             setvideoArray(copyarr);
           })
-          .catch((err) => document.write(err));
+          .catch((err) => console.log(err));
       });
     }
   }
