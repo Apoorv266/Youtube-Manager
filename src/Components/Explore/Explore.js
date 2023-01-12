@@ -19,48 +19,56 @@ const options = {
 // 	}
 // };
 
-const Explore = ({ videoIds , explVidFunc}) => {
+const Explore = ({ videoIds, explVidFunc }) => {
   const [videoArray, setvideoArray] = useState([]);
   const [display, setdisplay] = useState(false);
 
   function fetchFunc() {
-    videoIds.map((item) => {
-      let url = `https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=${item.videoId}&part=id%2Csnippet&type=video&maxResults=5`;
-      // let url = `https://youtube-v3-alternative.p.rapidapi.com/video?id=${item}`
-      fetch(url, options)
-        .then((response) => response.json())
-        .then((response) => {
-          let newId = Math.floor(100000 + Math.random() * 900000);
-          let urlArray 
-          if (videoIds.length <= 1) {
-            urlArray = response.items.slice(0, 24);
-          }
-          else{
-            urlArray = response.items.slice(0, 12);
-          }
-          let obj = {
-            id: newId,
-            url: urlArray,
-          };
-          let copyarr = videoArray;
-          copyarr.unshift(obj);
-          setvideoArray(copyarr);
-        })
-        .catch((err) => console.error(err));
-    });
+    if (videoIds.length !== 0) {
+      setdisplay(true)
+      videoIds.map((item) => {
+        let url = `https://youtube-v31.p.rapidapi.com/search?relatedToVideoId=${item.videoId}&part=id%2Csnippet&type=video&maxResults=5`;
+        fetch(url, options)
+          .then((response) => response.json())
+          .then((response) => {
+            
+            let newId = Math.floor(100000 + Math.random() * 900000);
+            let urlArray;
+            if (videoIds.length <= 1) {
+              urlArray = response.items.slice(0, 24);
+            } else {
+              urlArray = response.items.slice(0, 12);
+            }
+            let obj = {
+              id: newId,
+              url: urlArray,
+            };
+            let copyarr = videoArray;
+            copyarr.unshift(obj);
+            setvideoArray(copyarr);
+            setdisplay(false)
+          })
+          .catch((err) => console.error(err));
+      });
+    }
   }
 
   useEffect(() => {
     fetchFunc();
-    setTimeout(() => {
-      setdisplay(true);
-    }, 2000);
+    // setTimeout(() => {
+    //   setdisplay(true);
+    // }, 2000);
   }, []);
 
   return (
     <>
       <Navbar />
-      {display ? <ExploreCard videoArray={videoArray} explVidFunc={explVidFunc} /> : <Loading />}
+      {display && <Loading />}
+      {videoIds.length !== 0 ? (
+        <ExploreCard videoArray={videoArray} explVidFunc={explVidFunc} />
+      ) : (
+        <h3 style={{color:"white", textAlign: "center"}}>Enter at least one video in collection first</h3>
+      )}
     </>
   );
 };
