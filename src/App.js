@@ -41,7 +41,6 @@ function App() {
 
   function fetchFunc(videoId, formValue) {
     settoggleForm(false)
-    console.log(formValue)
     let url = `https://youtube-search-and-download.p.rapidapi.com/video?id=${videoId}`
     fetch(url, options).then((response) => response.json()).then((response) => {
       let newId = Math.floor(100000 + Math.random() * 900000)
@@ -55,7 +54,7 @@ function App() {
       }])
 
 
-      // preparing explore video id with are unique
+      // preparing explore video id which are unique
       let hasMatch = false;
       for (var i = 0; i < videoIds.length; ++i) {
         let currentVal = videoIds[i]
@@ -197,7 +196,6 @@ function App() {
         videoId: videoIdVal
       }
       setvideoIds([...videoIds, explObj])
-      console.log(videoIds);
   }
 
 
