@@ -22,6 +22,11 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
           <>
             <div className="card" key={item.id}>
               <img src={item.thumbnail} alt="" width="300px" height="200px" id="thumbnail" />
+              <div id="playlist-list">
+              {item.playlistList.map((val)=>{
+                 return <p id="playlist-tag">{val}</p>
+              })}
+              </div>
               <i className="fas fa-paint-brush"></i>
               <h3>{item.title.substring(0, 40)}..</h3>
               <p>Channel : {item.channel}</p>

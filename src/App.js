@@ -48,6 +48,7 @@ function App() {
         id: newId,
         title: formValue.title,
         link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
+        playlistList : [],
         channel: formValue.channel,
         thumbnail: response.videoDetails.thumbnail.thumbnails[2].url,
         tags: response.videoDetails.keywords,
@@ -103,10 +104,26 @@ function App() {
         }
       })
     }
+
     else {
       // notification
       console.log("select a playlist first")
     }
+
+
+    let Demoarr 
+
+    for (let j = 0; j < playlistName.length; j++) {
+      if (item.playlistId === playlistName[j].id) {
+        Demoarr = playlistName[j].val
+      }
+    }
+
+     videoData.map((val)=>{
+       if (item.id === val.id && !val.playlistList.includes(Demoarr)) {
+         val.playlistList = [...val.playlistList, Demoarr]
+       }
+     })
   }
 
   function handlePlayListFunc(val) {
@@ -178,24 +195,24 @@ function App() {
   }
 
 
-// add explore videos to collections
+  // add explore videos to collections
   function explVidFunc(vidtitle, channelName, thumbnailUrl, videoIdVal) {
     let newId = Math.floor(100000 + Math.random() * 900000)
-      let obj = {
-        id: newId,
-        title: vidtitle,
-        link: `https://www.youtube.com/watch?v=${videoIdVal}`,
-        channel: channelName,
-        thumbnail: thumbnailUrl,
-        tags: [],
-      }
-      setvideoData([...videoData, obj])
+    let obj = {
+      id: newId,
+      title: vidtitle,
+      link: `https://www.youtube.com/watch?v=${videoIdVal}`,
+      channel: channelName,
+      thumbnail: thumbnailUrl,
+      tags: [],
+    }
+    setvideoData([...videoData, obj])
 
-      let explObj = {
-        id: newId, 
-        videoId: videoIdVal
-      }
-      setvideoIds([...videoIds, explObj])
+    let explObj = {
+      id: newId,
+      videoId: videoIdVal
+    }
+    setvideoIds([...videoIds, explObj])
   }
 
 
@@ -205,7 +222,7 @@ function App() {
 
         <Route path="/" element={<Homepage logout={logout} loginWithRedirect={loginWithRedirect} isAuthenticated={isAuthenticated} />} />
 
-        <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout}/>} />
+        <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
         <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
 
