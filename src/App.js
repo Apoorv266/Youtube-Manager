@@ -48,7 +48,7 @@ function App() {
         id: newId,
         title: formValue.title,
         link: `https://www.youtube.com/watch?v=${response.videoDetails.videoId}`,
-        playlistList : [],
+        playlistList: [],
         channel: formValue.channel,
         thumbnail: response.videoDetails.thumbnail.thumbnails[2].url,
         tags: response.videoDetails.keywords,
@@ -92,7 +92,7 @@ function App() {
       let obj = item
       obj.playlistId = dropdown
       let val = Math.floor(100000 + Math.random() * 900000)
-      setplaylistObj([...playlistObj, { ...obj, id: val }])
+      setplaylistObj([...playlistObj, { ...obj, id: val, originalId: item.id }])
 
       // to get number of videos in each playlist
       let lengthArr = playlistObj.filter(item => {
@@ -111,19 +111,18 @@ function App() {
     }
 
 
-    let Demoarr 
-
+    let Demoarr
     for (let j = 0; j < playlistName.length; j++) {
       if (item.playlistId === playlistName[j].id) {
         Demoarr = playlistName[j].val
       }
     }
 
-     videoData.map((val)=>{
-       if (item.id === val.id && !val.playlistList.includes(Demoarr)) {
-         val.playlistList = [...val.playlistList, Demoarr]
-       }
-     })
+    videoData.map((val) => {
+      if (item.id === val.id) {
+        val.playlistList = [...val.playlistList, Demoarr]
+      }
+    })
   }
 
   function handlePlayListFunc(val) {
@@ -135,7 +134,8 @@ function App() {
   }
 
   // delete video from playlist
-  function dltVideoPlaylist(id, playlistNameId) {
+  function dltVideoPlaylist(id, playlistNameId, originalVidId) {
+
     // reducing video number from playlistName array
     playlistName.map((item) => {
       if (item.id == playlistNameId) {
@@ -147,6 +147,22 @@ function App() {
       return item.id !== id
     })
     setplaylistObj(arr)
+
+    // removing playlist tag from video card
+    let playlistItem
+    playlistName.map((item) => {
+      if (item.id === playlistNameId) {
+        playlistItem = item.val
+      }
+    })
+    
+    videoData.map((item) => {
+      if (item.id === originalVidId) {
+        let index = item.playlistList.indexOf(playlistItem);
+        item.playlistList.splice(index, 1)
+      }
+    })
+
   }
 
 

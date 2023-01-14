@@ -20,7 +20,7 @@ const PlaylistComponent = ({playlistId, playlistObj, dltVideoPlaylist}) => {
                 Check link
               </a>
               <div>
-                <button id="deleteBtn" onClick={()=>dltVideoPlaylist(arr.id, playlistId)}>Delete</button>
+                <button id="deleteBtn" onClick={()=>dltVideoPlaylist(arr.id, playlistId, arr.originalId)}>Delete</button>
                 </div>
               </div>
             )
