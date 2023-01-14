@@ -110,17 +110,17 @@ function App() {
       })
 
       let Demoarr
-    for (let j = 0; j < playlistName.length; j++) {
-      if (item.playlistId === playlistName[j].id) {
-        Demoarr = playlistName[j].val
+      for (let j = 0; j < playlistName.length; j++) {
+        if (item.playlistId === playlistName[j].id) {
+          Demoarr = playlistName[j].val
+        }
       }
-    }
 
-    videoData.map((val) => {
-      if (item.id === val.id) {
-        val.playlistList = [...val.playlistList, Demoarr]
-      }
-    })
+      videoData.map((val) => {
+        if (item.id === val.id) {
+          val.playlistList = [...val.playlistList, Demoarr]
+        }
+      })
     }
 
     else {
@@ -129,7 +129,7 @@ function App() {
     }
 
 
-    
+
   }
 
   function handlePlayListFunc(val) {
@@ -188,9 +188,9 @@ function App() {
     setplaylistObj(playlistVideoarr)
 
     //remove tags of playlist from all collection videos
-   
-    videoData.map((item)=>{
-      let newArr = item.playlistList.filter((val)=>{
+
+    videoData.map((item) => {
+      let newArr = item.playlistList.filter((val) => {
         return val !== playlistItemName
       })
       item.playlistList = newArr
@@ -200,11 +200,7 @@ function App() {
 
   //change name of playlist function
   function editplaylistFunc(id, val, originalVal) {
-    if (val === "") {
-      // error
-      displayErrorFunc("playlist name cant be empty", true)
-    }
-    else {
+    if (val !== "") {
       // changing playlist name in playlist array
       playlistName.map((item) => {
         if (item.id == id) {
@@ -215,12 +211,13 @@ function App() {
 
 
       // changing playlist tags on collection videos
-      videoData.map((item)=>{    
-            let index = item.playlistList.indexOf(originalVal)
-            item.playlistList.splice(index, 1, val)   
-     
-      })
+      videoData.map((item) => {
+        let index = item.playlistList.indexOf(originalVal)
+        if (index !== -1) {
+          item.playlistList.splice(index, 1, val)
+        }
 
+      })
     }
 
     console.log(val);
@@ -279,7 +276,7 @@ function App() {
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} dispError={dispError} errorMsg={errorMsg}/>} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} dispError={dispError} errorMsg={errorMsg} />} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
