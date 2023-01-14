@@ -188,7 +188,7 @@ function App() {
     setplaylistObj(playlistVideoarr)
 
     //remove tags of playlist from all collection videos
-    console.log(playlistItemName);
+   
     videoData.map((item)=>{
       let newArr = item.playlistList.filter((val)=>{
         return val !== playlistItemName
@@ -199,19 +199,32 @@ function App() {
 
 
   //change name of playlist function
-  function editplaylistFunc(id, val) {
+  function editplaylistFunc(id, val, originalVal) {
     if (val === "") {
       // error
       displayErrorFunc("playlist name cant be empty", true)
     }
     else {
+      // changing playlist name in playlist array
       playlistName.map((item) => {
         if (item.id == id) {
           item.val = val
         }
       })
       setInputView(false)
+
+
+      // changing playlist tags on collection videos
+      videoData.map((item)=>{    
+            let index = item.playlistList.indexOf(originalVal)
+            item.playlistList.splice(index, 1, val)   
+     
+      })
+
     }
+
+    console.log(val);
+    console.log(originalVal);
   }
 
   // display input for playlist name change Function

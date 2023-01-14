@@ -1,7 +1,7 @@
 import React from 'react'
 import "../Style/AddPlaylistForm.css"
 
-const NewPlaylistForm = ({ CloseNewPlaylistFunc, input, setinput, newplaylistFunc }) => {
+const NewPlaylistForm = ({ CloseNewPlaylistFunc, input, setinput, newplaylistFunc, dispErrorMsg }) => {
     
 
     return (
@@ -9,6 +9,7 @@ const NewPlaylistForm = ({ CloseNewPlaylistFunc, input, setinput, newplaylistFun
             {<div className="modal">
                 <div className="overlay" >
                     <div id="main-playForm">
+                   {dispErrorMsg  && <h4>Give some name to playlist!</h4>}
                         <div id="form-close">
                             <h3 onClick={CloseNewPlaylistFunc}>X</h3>
                         </div>

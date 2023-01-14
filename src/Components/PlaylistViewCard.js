@@ -61,7 +61,7 @@ const PlaylistViewCard = ({
                     <div id="btnBox">
                       {InputView && playlistId === item.id ? (
                         <div>
-                          <div id="dltBtn" onClick={() => editplaylistFunc(item.id, inputValue)}>
+                          <div id="dltBtn" onClick={() => editplaylistFunc(item.id, inputValue, item.val)}>
                             Done
                           </div>
                           <div
