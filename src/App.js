@@ -30,6 +30,8 @@ function App() {
   const [InputView, setInputView] = useState(false)
   const [playlistId, setplaylistId] = useState(0)
   const [videoIds, setvideoIds] = useState([])
+  const [dispError, setdispError] = useState(false)
+  const [errorMsg, seterrorMsg] = useState("")
 
   function openFormFunc() {
     settoggleForm(true)
@@ -72,6 +74,7 @@ function App() {
       .catch((err) => console.error(err));
   }
 
+
   function deleteCard(id) {
     let arr = videoData.filter(item => {
       return item.id !== id
@@ -87,6 +90,8 @@ function App() {
 
 
   function captureFunc(e, item, dropdown) {
+    console.log(dropdown)
+    console.log(playlistName);
     e.preventDefault()
     if (dropdown !== '' && dropdown !== 'Select a playlist') {
       let obj = item
@@ -107,7 +112,7 @@ function App() {
 
     else {
       // notification
-      console.log("select a playlist first")
+      // displayErrorFunc("select a playlist first", true)
     }
 
 
@@ -195,7 +200,7 @@ function App() {
   function editplaylistFunc(id, val) {
     if (val === "") {
       // error
-      console.log("playlist name cant be empty")
+      displayErrorFunc("playlist name cant be empty", true)
     }
     else {
       playlistName.map((item) => {
@@ -228,6 +233,7 @@ function App() {
       title: vidtitle,
       link: `https://www.youtube.com/watch?v=${videoIdVal}`,
       channel: channelName,
+      playlistList: [],
       thumbnail: thumbnailUrl,
       tags: [],
     }
@@ -241,6 +247,15 @@ function App() {
   }
 
 
+  function displayErrorFunc(msg, toggleVal) {
+    seterrorMsg(msg)
+    setdispError(toggleVal)
+    setTimeout(() => {
+      setdispError(false)
+    }, 2000);
+  }
+
+
   return (
     <>
       <Routes>
@@ -249,7 +264,7 @@ function App() {
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} />} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} dispError={dispError} errorMsg={errorMsg}/>} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 

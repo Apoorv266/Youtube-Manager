@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import "../Style/ErrorMsg.css"
 
-const ErrorMsg = () => {
+const ErrorMsg = ({errorMsg}) => {
   return (
-    <div>playlist name cant be empty""</div>
-  )
-}
+    <div className="errorBack">
+      <h4>{errorMsg}</h4>
+    </div>
+  );
+};
 
-export default ErrorMsg
+export default ErrorMsg;

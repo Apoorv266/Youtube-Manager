@@ -14,7 +14,7 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistNam
 
     return (
         <>
-        {/* {console.log(item)} */}
+            {/* {console.log(item)} */}
             {<div className="modal" key={itemToForm.id}>
                 <div className="overlay" >
                     <div id="main-playForm">
