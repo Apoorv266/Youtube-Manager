@@ -46,7 +46,6 @@ const Form = ({ closeFormFunc, fetchFunc }) => {
       let videoId = `${formState.link.slice(-11)}`;
       fetchFunc(videoId, formState);
     }
-    console.log(formState);
   }
 
   function handleUrl(urlInput, e) {
