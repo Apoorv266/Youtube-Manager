@@ -155,7 +155,7 @@ function App() {
         playlistItem = item.val
       }
     })
-    
+
     videoData.map((item) => {
       if (item.id === originalVidId) {
         let index = item.playlistList.indexOf(playlistItem);
@@ -167,7 +167,7 @@ function App() {
 
 
   // delete playlist function
-  function dltPlaylist(id) {
+  function dltPlaylist(id, playlistItemName) {
     // removing playlist from playlistName array
     let playListArr = playlistName.filter(item => {
       return item.id !== id
@@ -179,6 +179,15 @@ function App() {
       return item.playlistId !== id
     })
     setplaylistObj(playlistVideoarr)
+
+    //remove tags of playlist from all collection videos
+    console.log(playlistItemName);
+    videoData.map((item)=>{
+      let newArr = item.playlistList.filter((val)=>{
+        return val !== playlistItemName
+      })
+      item.playlistList = newArr
+    })
   }
 
 

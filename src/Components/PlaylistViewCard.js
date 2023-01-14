@@ -73,7 +73,7 @@ const PlaylistViewCard = ({
                         </div>
                       ) : (
                         <div>
-                          <div onClick={() => dltPlaylist(item.id)} id="dltBtn">
+                          <div onClick={() => dltPlaylist(item.id, item.val)} id="dltBtn">
                             Dlt
                           </div>
                           <div
