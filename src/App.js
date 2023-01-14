@@ -108,15 +108,8 @@ function App() {
           item.no = lengthArr.length + 1
         }
       })
-    }
 
-    else {
-      // notification
-      // displayErrorFunc("select a playlist first", true)
-    }
-
-
-    let Demoarr
+      let Demoarr
     for (let j = 0; j < playlistName.length; j++) {
       if (item.playlistId === playlistName[j].id) {
         Demoarr = playlistName[j].val
@@ -128,6 +121,15 @@ function App() {
         val.playlistList = [...val.playlistList, Demoarr]
       }
     })
+    }
+
+    else {
+      // notification
+      // displayErrorFunc("select a playlist first", true)
+    }
+
+
+    
   }
 
   function handlePlayListFunc(val) {

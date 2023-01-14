@@ -14,23 +14,24 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistNam
 
     return (
         <>
-            {/* {console.log(item)} */}
             {<div className="modal" key={itemToForm.id}>
                 <div className="overlay" >
                     <div id="main-playForm">
                         <div id="form-close">
-                            <h3 onClick={closePlayFunc}>X</h3>
+                            <h3 onClick={closePlayFunc} style={{color: "black"}}>X</h3>
                         </div>
                         <form id="form-body">
-                            <label>Select PLaylist:</label>
+                           {playlistName.length === 0 ?<><label style={{color: "black"}}>Select PLaylist:</label> <h4 style={{color: "black"}}>Add a playlist First !</h4></>  
+                           
+                           : 
+
+                           <>
                             <select name="selectPlaylist" id="selectPlaylist" value={dropdown} onChange={handleChange}
                             >
-
-                                <option  >Select a playlist</option>
+                                <option >Select a playlist</option>
                                 {playlistName.length > 0 ? playlistName.map((item) => {
                                     return <option key={item.id} value={item.id} >{item.val}</option>
-                                }) : <option key={itemToForm.id} value={dropdown}>Add a playlist first</option>}
-
+                                }) : <option key={itemToForm.id} value="Add a playlist first">Add a playlist first</option>}
 
                             </select>
                             <button
@@ -39,7 +40,8 @@ const AddToPlaylistForm = ({ closePlayFunc, captureFunc, itemToForm, playlistNam
                                 onClick={(e) => captureFunc(e, itemToForm, dropdown)}
                             >
                                 Add to Playlist !
-                            </button>
+                            </button></>}
+
                         </form>
                     </div>
                 </div>
