@@ -19,7 +19,7 @@ const PlaylistComponent = ({ playlistId, playlistObj, dltVideoPlaylist }) => {
                   <p>Channel : {arr.channel}</p>
                 </div>
                 <div className="btm-button">
-                <a href={arr.link} id="vid-Link" target="_blank" style={{marginTop: "20px"}}>
+                <a href={arr.link} id="vid-Link" target="_blank">
                     Check link
                   </a>
                 <button id="deleteBtn" onClick={() => dltVideoPlaylist(arr.id, playlistId, arr.originalId)}>Delete</button>

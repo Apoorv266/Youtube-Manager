@@ -66,7 +66,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                 )}
               </div>
               <div className="btm-button">
-                <a href={item.link} id="vid-Link" target="_blank" style={{marginTop: "20px"}}>
+                <a href={item.link} id="vid-Link" target="_blank" >
                   Check link
                 </a>
                 <button
