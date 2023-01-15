@@ -21,6 +21,7 @@ footer {
   /* text-shadow: 1px 1px 0 #555; */
   height: auto;
   color: white;
+  margin-bottom: -20px;
 }
 
 .fas {
@@ -37,6 +38,9 @@ footer {
   justify-content: center;
   margin: auto;
   margin-top: 15px;
+  background-color: black;
+  font-size: 18px;
+  color: white;
 }
 
 #thumbnail {
@@ -45,9 +49,11 @@ footer {
 }
 
 #deleteBtn {
-  background-color: black;
+  border: none;
+  background-color: #d7573a;
+  color: black;
   font-size: 18px;
-  color: white;
+  font-weight: 900;
 }
 
 #addtolistBtn {
@@ -78,21 +84,41 @@ footer {
 .mainCard {
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-.editBox {
+.utility{
+  /* background-color: red; */
+  display: flex;
+  flex-direction: row;
+  justify-content :flex-end;
+  align-items: end;
+  gap: 20px;
+  
+}
+
+.notesBox {
   height: 30px;
-  background-color: white;
-  width: 30px;
+  background-color: #3f4042;
+  width: 50px;
   justify-content: center;
   align-items: center;
   margin: auto;
+  border-radius: 5px;
+  border: none;
+  color: white;
+
 }
 
-@media (prefers-color-scheme: dark) {
+.btm-button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* background-color: red; */
+}
+
+/* @media (prefers-color-scheme: dark) {
   html {
     background-color: #111;
     color: #fff;
   }
-}
+} */

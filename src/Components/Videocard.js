@@ -22,14 +22,21 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
         return (
           <>
             <div className="mainCard">
-              {/* <div className="utility">
-                <img
-                  src={require("../Assets/notes.png")}
-                  alt=""
-                  srcset=""
-                  width="40px"
-                />
-              </div> */}
+              <div className="utility">
+                <div>
+
+                <button className="notesBox">Notes</button>
+                </div>
+                <div>
+
+                <button
+                  className="notesBox"
+                  onClick={(e) => deleteCard(item.id, item.link.slice(-11))}
+                >
+                  Delete
+                </button>
+                </div>
+              </div>
               <div className="card" key={item.id}>
                 <img
                   src={item.thumbnail}
@@ -46,9 +53,9 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                 <i className="fas fa-paint-brush"></i>
                 <h3>{item.title.substring(0, 40)}..</h3>
                 <p>Channel : {item.channel}</p>
-                <a href={item.link} id="vid-Link" target="_blank">
+                {/* <a href={item.link} id="vid-Link" target="_blank">
                   Check link
-                </a>
+                </a> */}
                 {toggleplayForm && (
                   <AddToPlaylistForm
                     closePlayFunc={closePlayFunc}
@@ -57,20 +64,17 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                     playlistName={playlistName}
                   />
                 )}
-                <div>
-                  <button
-                    id="deleteBtn"
-                    onClick={(e) => deleteCard(item.id, item.link.slice(-11))}
-                  >
-                    Delete
-                  </button>
-                  <button
-                    id="addtolistBtn"
-                    onClick={(e) => togglePlayFunc(e, item)}
-                  >
-                    Add to playlist
-                  </button>
-                </div>
+              </div>
+              <div className="btm-button">
+                <a href={item.link} id="vid-Link" target="_blank" style={{marginTop: "20px"}}>
+                  Check link
+                </a>
+                <button
+                  id="addtolistBtn"
+                  onClick={(e) => togglePlayFunc(e, item)}
+                >
+                  Add to playlist
+                </button>
               </div>
             </div>
           </>
