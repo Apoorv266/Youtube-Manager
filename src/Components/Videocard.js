@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../Style/Videocard.css";
 import AddToPlaylistForm from "./AddToPlaylistForm";
-import { BsFillPencilFill } from "react-icons/bs";
 
-const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
+
+const Videocard = ({ videoData, deleteCard, captureFunc, playlistName , notesWindowFunc}) => {
   const [toggleplayForm, settoggleplayForm] = useState(false);
   const [itemToForm, setitemToForm] = useState("");
 
@@ -24,17 +25,17 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
             <div className="mainCard">
               <div className="utility">
                 <div>
-
-                <button className="notesBox">Notes</button>
+                  <Link to={"/notes/myNote"}>
+                  <button className="notesBox" onClick={()=>notesWindowFunc(item.link, item.id)}>Notes</button>
+                  </Link>
                 </div>
                 <div>
-
-                <button
-                  className="notesBox"
-                  onClick={(e) => deleteCard(item.id, item.link.slice(-11))}
-                >
-                  Delete
-                </button>
+                  <button
+                    className="notesBox"
+                    onClick={(e) => deleteCard(item.id, item.link.slice(-11))}
+                  >
+                    Delete
+                  </button>
                 </div>
               </div>
               <div className="card" key={item.id}>
@@ -53,9 +54,6 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                 <i className="fas fa-paint-brush"></i>
                 <h3>{item.title.substring(0, 40)}..</h3>
                 <p>Channel : {item.channel}</p>
-                {/* <a href={item.link} id="vid-Link" target="_blank">
-                  Check link
-                </a> */}
                 {toggleplayForm && (
                   <AddToPlaylistForm
                     closePlayFunc={closePlayFunc}
@@ -66,7 +64,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
                 )}
               </div>
               <div className="btm-button">
-                <a href={item.link} id="vid-Link" target="_blank" >
+                <a href={item.link} id="vid-Link" target="_blank">
                   Check link
                 </a>
                 <button
@@ -79,6 +77,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName }) => {
             </div>
           </>
         );
+
       })}
     </section>
   );

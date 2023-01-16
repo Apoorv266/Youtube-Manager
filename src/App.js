@@ -8,6 +8,8 @@ import Explore from "./Components/Explore/Explore";
 import ProtectedRoute from "./Components/Private-Route";
 import Playlist from "./Components/Playlist";
 import PlaylistComponent from "./Components/PlaylistComponent";
+import Notes from "./Components/Notes/Notes";
+import NotesCard from "./Components/Notes/NotesCard";
 
 
 const options = {
@@ -30,8 +32,11 @@ function App() {
   const [InputView, setInputView] = useState(false)
   const [playlistId, setplaylistId] = useState(0)
   const [videoIds, setvideoIds] = useState([])
-  const [dispError, setdispError] = useState(false)
-  const [errorMsg, seterrorMsg] = useState("")
+
+  // useStates for notes
+  const [videoLink, setvideoLink] = useState("")
+  const [currentVidId, setcurrentVidId] = useState("")
+  const [notesArr, setnotesArr] = useState([])
 
   function openFormFunc() {
     settoggleForm(true)
@@ -259,14 +264,48 @@ function App() {
   }
 
 
-  function displayErrorFunc(msg, toggleVal) {
-    seterrorMsg(msg)
-    setdispError(toggleVal)
-    setTimeout(() => {
-      setdispError(false)
-    }, 2000);
+  //notes 
+  function notesWindowFunc(link, id) {
+    setvideoLink(link)
+    setcurrentVidId(id)
   }
 
+  function NotesArrFunc(value, title, id, videoLink) {
+    let obj = {
+      itemId: id,
+      title: title,
+      content: value, 
+      videoUrl : videoLink
+    }
+
+    let hasMatch = false
+    for (let i = 0; i < notesArr.length; i++) {
+      let value = notesArr[i]
+      if (value.itemId == id) {
+        hasMatch = true
+        break
+      }
+    }
+
+    if (hasMatch) {
+      notesArr.map((item) => {
+        if (item.itemId === id) {
+          item.title = title
+          item.content = value
+        }
+      })
+    }
+    else {
+      setnotesArr([...notesArr, obj])
+    }
+    console.log(notesArr);
+  }
+
+
+  function accessNotesFunc(id, videoUrl) {
+    setcurrentVidId(id)
+    setvideoLink(videoUrl)
+  }
 
   return (
     <>
@@ -276,12 +315,20 @@ function App() {
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} dispError={dispError} errorMsg={errorMsg} />} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} />} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
 
         <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />
+
+
+        <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} />} />
+
+        <Route path="/notes/myNote" element={<ProtectedRoute component={NotesCard} videoLink={videoLink} NotesArrFunc={NotesArrFunc} currentVidId={currentVidId}  notesArr={notesArr}/>} />
+
+
+
       </Routes>
 
     </>
