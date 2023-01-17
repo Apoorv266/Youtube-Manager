@@ -269,8 +269,8 @@ function App() {
     let obj = {
       itemId: id,
       title: title,
-      content: value, 
-      videoUrl : videoLink
+      content: value,
+      videoUrl: videoLink
     }
 
     // checking if that video exist in notes array
@@ -304,6 +304,12 @@ function App() {
     setvideoLink(videoUrl)
   }
 
+  // delete notes 
+  function deleteNotesFunc(noteId) {
+    let arr = notesArr.filter((item) => item.itemId !== noteId)
+    setnotesArr(arr)
+  }
+
   return (
     <>
       <Routes>
@@ -317,12 +323,12 @@ function App() {
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
 
-        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} notesWindowFunc={notesWindowFunc}/>} />
+        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} notesWindowFunc={notesWindowFunc} />} />
 
 
-        <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} />} />
+        <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} deleteNotesFunc={deleteNotesFunc} />} />
 
-        <Route path="/notes/myNote" element={<ProtectedRoute component={NotesCard} videoLink={videoLink} NotesArrFunc={NotesArrFunc} currentVidId={currentVidId}  notesArr={notesArr}/>} />
+        <Route path="/notes/myNote" element={<ProtectedRoute component={NotesCard} videoLink={videoLink} NotesArrFunc={NotesArrFunc} currentVidId={currentVidId} notesArr={notesArr} />} />
 
 
 

@@ -27,3 +27,29 @@
     gap: 5px;
   }
   
+  #notesBtn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .notesBtn, .dltBtn{
+    width: 110px;
+  }
+
+  .notesBtn{
+    border: none;
+    background-color: black;
+    color: white;
+    font-size: 18px;
+    font-weight: 900;
+    cursor: pointer;
+  }
+
+  .dltBtn{
+    border: none;
+  background-color: #d7573a;
+  color: black;
+  font-size: 18px;
+  font-weight: 900;
+  }

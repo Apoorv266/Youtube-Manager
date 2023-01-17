@@ -3,7 +3,7 @@ import Navbar from "../Navbar";
 import "../../Style/Notes.css";
 import { Link } from "react-router-dom";
 
-const Notes = ({ notesArr, accessNotesFunc }) => {
+const Notes = ({ notesArr, accessNotesFunc, deleteNotesFunc }) => {
   return (
     <>
       <Navbar />
@@ -13,10 +13,20 @@ const Notes = ({ notesArr, accessNotesFunc }) => {
             return (
               <article>
                 <div class="text">
-                  <h3>{item.title}</h3>
-                  <Link to={"/notes/myNote"}>
-                    <button onClick={()=>accessNotesFunc(item.itemId, item.videoUrl)}>Full Notes</button>
-                  </Link>
+                  <h2>{item.title}</h2>
+                  <div id="notesBtn">
+                    <Link to={"/notes/myNote"}>
+                      <button
+                        onClick={() =>
+                          accessNotesFunc(item.itemId, item.videoUrl)
+                        }
+                        className="notesBtn"
+                      >
+                        Full Notes
+                      </button>
+                    </Link>
+                    <button className="dltBtn" onClick={()=>deleteNotesFunc(item.itemId)}>Delete</button>
+                  </div>
                 </div>
               </article>
             );
