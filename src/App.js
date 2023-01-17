@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddVid from "./Components/AddVid";
 import { Routes, Route } from 'react-router-dom';
 import Homepage from "./Components/Homepage";
@@ -19,26 +19,47 @@ const options = {
     "X-RapidAPI-Host": "youtube-search-and-download.p.rapidapi.com",
   },
 };
+const getStoredDataFunc = () => {
+  let videoData = localStorage.getItem(`storageData`)
+  if (videoData) {
+    return JSON.parse(localStorage.getItem(`storageData`))
+  }
+  else {
+    return []
+  }
+}
 
 function App() {
 
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
 
   const [toggleForm, settoggleForm] = useState(false);
-  const [videoData, setvideoData] = useState([]);
-  const [playlistName, setplaylistName] = useState([])
+  const [videoData, setvideoData] = useState(getStoredDataFunc().videoData);
+  const [playlistName, setplaylistName] = useState(getStoredDataFunc().playlistName)
   const [playlistVideoCardId, setplaylistVideoCardId] = useState("")
-  const [playlistObj, setplaylistObj] = useState([])
+  const [playlistObj, setplaylistObj] = useState(getStoredDataFunc().playlistObj)
   const [InputView, setInputView] = useState(false)
   const [playlistId, setplaylistId] = useState(0)
-  const [videoIds, setvideoIds] = useState([])
- 
+  const [videoIds, setvideoIds] = useState(getStoredDataFunc().videoIds)
+
   // useStates for notes
   const [videoLink, setvideoLink] = useState("")
   const [currentVidId, setcurrentVidId] = useState("")
-  const [notesArr, setnotesArr] = useState([])
+  const [notesArr, setnotesArr] = useState(getStoredDataFunc().notesArr)
   const [dispModal, setdispModal] = useState(false)
- 
+
+  useEffect(() => {
+    let obj = {
+      videoData: videoData,
+      playlistObj: playlistObj,
+      playlistName: playlistName,
+      videoIds: videoIds,
+      notesArr: notesArr
+    }
+    localStorage.setItem("storageData", JSON.stringify(obj))
+  }, [videoData, playlistObj, playlistName, videoIds, notesArr])
+
+
 
   function openFormFunc() {
     settoggleForm(true)
@@ -97,6 +118,7 @@ function App() {
     }
   }
 
+  // delete video + its note
   function dltNoteFunc(id) {
     setdispModal(false)
     let arr = videoData.filter(item => {
@@ -114,6 +136,7 @@ function App() {
 
   }
 
+  // only delete video from collection 
   function keepNoteFunc(id) {
     setdispModal(false)
     let arr = videoData.filter(item => {
@@ -349,7 +372,7 @@ function App() {
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc}  />} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} />} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
