@@ -1,8 +1,9 @@
 import React from 'react'
 import Navbar from './Navbar'
 import "../Style/Videocard.css";
+import { Link } from 'react-router-dom';
 
-const PlaylistComponent = ({ playlistId, playlistObj, dltVideoPlaylist }) => {
+const PlaylistComponent = ({ playlistId, playlistObj, dltVideoPlaylist , notesWindowFunc}) => {
   return (
     <>
       <Navbar />
@@ -12,6 +13,13 @@ const PlaylistComponent = ({ playlistId, playlistObj, dltVideoPlaylist }) => {
           if (arr.playlistId == playlistId) {
             return (
               <div className="mainCard">
+                <div className="utility">
+                <div>
+                  <Link to={"/notes/myNote"}>
+                  <button className="notesBox" onClick={()=>notesWindowFunc(arr.link, arr.originalId)}>Notes</button>
+                  </Link>
+                </div>
+              </div>
                 <div className="card" key={arr.id}>
                   <img src={arr.thumbnail} alt="" width="300px" height="200px" id="thumbnail" />
                   <i className="fas fa-paint-brush"></i>

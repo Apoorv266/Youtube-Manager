@@ -95,8 +95,6 @@ function App() {
 
 
   function captureFunc(e, item, dropdown) {
-    console.log(dropdown)
-    console.log(playlistName);
     e.preventDefault()
     if (dropdown !== '' && dropdown !== 'Select a playlist') {
       let obj = item
@@ -224,9 +222,6 @@ function App() {
 
       })
     }
-
-    console.log(val);
-    console.log(originalVal);
   }
 
   // display input for playlist name change Function
@@ -278,6 +273,7 @@ function App() {
       videoUrl : videoLink
     }
 
+    // checking if that video exist in notes array
     let hasMatch = false
     for (let i = 0; i < notesArr.length; i++) {
       let value = notesArr[i]
@@ -287,6 +283,7 @@ function App() {
       }
     }
 
+    // if video exists then update the value
     if (hasMatch) {
       notesArr.map((item) => {
         if (item.itemId === id) {
@@ -295,10 +292,10 @@ function App() {
         }
       })
     }
+    // if video does not exist push a fresh new object
     else {
       setnotesArr([...notesArr, obj])
     }
-    console.log(notesArr);
   }
 
 
@@ -320,7 +317,7 @@ function App() {
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
 
-        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} />} />
+        <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} notesWindowFunc={notesWindowFunc}/>} />
 
 
         <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} />} />
