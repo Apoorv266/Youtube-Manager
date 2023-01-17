@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../Style/Videocard.css";
 import AddToPlaylistForm from "./AddToPlaylistForm";
+import DeleteModal from "./Notes/DeleteModal";
 
 
-const Videocard = ({ videoData, deleteCard, captureFunc, playlistName , notesWindowFunc}) => {
+const Videocard = ({ videoData, deleteCard, captureFunc, playlistName , notesWindowFunc, dispModal, dltNoteFunc, keepNoteFunc}) => {
   const [toggleplayForm, settoggleplayForm] = useState(false);
   const [itemToForm, setitemToForm] = useState("");
 
@@ -36,6 +37,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName , notesWin
                   >
                     Delete
                   </button>
+                  {dispModal && <DeleteModal dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} currId={item.id}/>}
                 </div>
               </div>
               <div className="card" key={item.id}>

@@ -1,0 +1,12 @@
+#main-Dltform{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 290px;
+    background-color: rgb(228, 228, 228);
+    margin: auto;
+    height: 40vh;
+    flex-direction: column;
+    border-radius: 30px;
+    position: absolute;
+}

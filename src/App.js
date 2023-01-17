@@ -32,11 +32,13 @@ function App() {
   const [InputView, setInputView] = useState(false)
   const [playlistId, setplaylistId] = useState(0)
   const [videoIds, setvideoIds] = useState([])
-
+ 
   // useStates for notes
   const [videoLink, setvideoLink] = useState("")
   const [currentVidId, setcurrentVidId] = useState("")
   const [notesArr, setnotesArr] = useState([])
+  const [dispModal, setdispModal] = useState(false)
+ 
 
   function openFormFunc() {
     settoggleForm(true)
@@ -81,6 +83,22 @@ function App() {
 
 
   function deleteCard(id) {
+    let hasMatch = false
+    for (let i = 0; i < notesArr.length; i++) {
+      if (notesArr[i].itemId === id) {
+        hasMatch = true
+        break
+      }
+    }
+    if (hasMatch) {
+      setdispModal(true)
+    } else {
+      keepNoteFunc(id)
+    }
+  }
+
+  function dltNoteFunc(id) {
+    setdispModal(false)
     let arr = videoData.filter(item => {
       return item.id !== id
     })
@@ -91,6 +109,22 @@ function App() {
     })
     setvideoIds(newArr)
 
+    let newNoteArr = notesArr.filter((item) => item.itemId !== id)
+    setnotesArr(newNoteArr)
+
+  }
+
+  function keepNoteFunc(id) {
+    setdispModal(false)
+    let arr = videoData.filter(item => {
+      return item.id !== id
+    })
+    setvideoData(arr)
+
+    let newArr = videoIds.filter(item => {
+      return item.id !== id
+    })
+    setvideoIds(newArr)
   }
 
 
@@ -112,16 +146,16 @@ function App() {
         }
       })
 
-      let Demoarr
+      let currentPlaylistName
       for (let j = 0; j < playlistName.length; j++) {
         if (item.playlistId === playlistName[j].id) {
-          Demoarr = playlistName[j].val
+          currentPlaylistName = playlistName[j].val
         }
       }
 
       videoData.map((val) => {
         if (item.id === val.id) {
-          val.playlistList = [...val.playlistList, Demoarr]
+          val.playlistList = [...val.playlistList, currentPlaylistName]
         }
       })
     }
@@ -130,9 +164,6 @@ function App() {
       // notification
       // displayErrorFunc("select a playlist first", true)
     }
-
-
-
   }
 
   function handlePlayListFunc(val) {
@@ -318,7 +349,7 @@ function App() {
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} />} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc}  />} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
