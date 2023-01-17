@@ -57,7 +57,7 @@ function App() {
       notesArr: notesArr
     }
     localStorage.setItem("storageData", JSON.stringify(obj))
-  }, [videoData, playlistObj, playlistName, videoIds, notesArr])
+  }, [videoData, playlistObj, playlistName, videoIds, notesArr, editplaylistFunc])
 
 
 
