@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Youtube-Manager/static/css/main.be0f8c7a.css",
+    "main.js": "/Youtube-Manager/static/js/main.250e84fc.js",
+    "index.html": "/Youtube-Manager/index.html",
+    "main.be0f8c7a.css.map": "/Youtube-Manager/static/css/main.be0f8c7a.css.map",
+    "main.250e84fc.js.map": "/Youtube-Manager/static/js/main.250e84fc.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.be0f8c7a.css",
+    "static/js/main.250e84fc.js"
+  ]
+}
