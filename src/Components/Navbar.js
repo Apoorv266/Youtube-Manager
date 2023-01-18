@@ -8,7 +8,7 @@ const Navbar = ({ logout }) => {
     <>
       <div className='main-navbar'>
         <div>
-          <h3>Youtube Recommender</h3>
+          <h3 className='logoMain'>Youtube<span className='logo'>Buddy</span></h3>
         </div>
 
         <div className='links'>
