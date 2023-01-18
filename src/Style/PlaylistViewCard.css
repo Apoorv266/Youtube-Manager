@@ -6,14 +6,6 @@
   }  
   
   
-  /* Responsive: */
-  
-  @media only screen and (min-width: 640px) {
-    .layout {
-      display: flex;
-      gap: 10px;
-    }
-  }
   
   /* etc */
   
@@ -21,18 +13,21 @@
     max-width: 60em;
     margin-right: auto;
     margin-left: auto;
+    
   }
   
   .col {
     padding: 1em;
     margin: 0 2px 2px 0;
     background: #D7573A;
+    /* height: 80px; */
   }
   
 
   .layout{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    gap: 20px;
   }
 
  
@@ -96,3 +91,42 @@
     width: 350px;
     height: 30px;
   }
+
+
+  /* Responsive: */
+  
+  @media only screen and (max-width: 768px) {
+    .layout {
+      display: flex;
+      gap: 15px;
+      flex-direction: column;
+    }
+    .container {
+      max-width: 30em;
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    
+  }
+
+  @media only screen and (max-width: 425px) {
+    .container {
+      max-width: 19em;
+    }
+
+    #CardClickArea{
+      width: 190px;
+      font-size: 11px;
+    }
+
+    #playlistDetail{
+      width: 220px;
+      margin-left: -10px;
+    }
+
+    .col {
+      height: 70px;
+    }
+  }
+  

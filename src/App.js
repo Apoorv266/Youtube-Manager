@@ -29,6 +29,8 @@ const getStoredDataFunc = () => {
   }
 }
 
+
+
 function App() {
 
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
@@ -51,12 +53,13 @@ function App() {
   useEffect(() => {
     let obj = {
       videoData: videoData,
-      playlistObj: playlistObj,
       playlistName: playlistName,
+      playlistObj: playlistObj,
       videoIds: videoIds,
       notesArr: notesArr
     }
     localStorage.setItem("storageData", JSON.stringify(obj))
+   
   }, [videoData, playlistObj, playlistName, videoIds, notesArr, editplaylistFunc])
 
 
