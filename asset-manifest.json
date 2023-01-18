@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Youtube-Manager/static/css/main.be0f8c7a.css",
-    "main.js": "/Youtube-Manager/static/js/main.250e84fc.js",
-    "index.html": "/Youtube-Manager/index.html",
-    "main.be0f8c7a.css.map": "/Youtube-Manager/static/css/main.be0f8c7a.css.map",
-    "main.250e84fc.js.map": "/Youtube-Manager/static/js/main.250e84fc.js.map"
+    "main.css": "/static/css/main.be0f8c7a.css",
+    "main.js": "/static/js/main.250e84fc.js",
+    "index.html": "/index.html",
+    "main.be0f8c7a.css.map": "/static/css/main.be0f8c7a.css.map",
+    "main.250e84fc.js.map": "/static/js/main.250e84fc.js.map"
   },
   "entrypoints": [
     "static/css/main.be0f8c7a.css",
