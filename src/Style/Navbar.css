@@ -36,6 +36,7 @@ a {
   width: 100px;
   height: 40px;
   font-size: 18px;
+  margin-bottom: 20px;
 }
 
 #loginBtn {
@@ -50,6 +51,12 @@ a {
 
 .title {
   margin-left: 10px;
+}
+
+.links{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @media only screen and (max-width: 425px) {
@@ -69,6 +76,7 @@ a {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: -5px;
   }
 }
@@ -89,5 +97,6 @@ a {
 @media only screen and (max-width: 320px) {
   .linkVal {
     font-size: 11px;
+    margin-left: 8px;
   }
 }
