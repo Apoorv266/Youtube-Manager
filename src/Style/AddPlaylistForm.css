@@ -1,16 +1,33 @@
-#main-playForm{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 500px;
-    background-color: rgb(228, 228, 228);
-    margin: auto;
-    height: 30vh;
-    flex-direction: column;
-    border-radius: 30px;
-    position: absolute;
+#main-playForm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 500px;
+  background-color: rgb(228, 228, 228);
+  margin: auto;
+  height: 30vh;
+  flex-direction: column;
+  border-radius: 5px;
+  position: absolute;
 }
 
-#selectPlaylist{
-    width: 400px;
+#selectPlaylist {
+  width: 400px;
 }
+
+@media only screen and (max-width: 425px) {
+  #main-playForm {
+    width: 300px;
+  }
+
+  #selectPlaylist {
+    width: 250px;
+  }
+  
+}
+
+@media only screen and (max-width: 768px) {
+    #main-playForm {
+        height: 40vh;
+    }
+  }

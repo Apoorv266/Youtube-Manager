@@ -1,53 +1,93 @@
-.main-navbar{
-    display: flex;
-    justify-content: space-between;
-    background-color: #D7573A;
+.main-navbar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #d7573a;
+  align-items: center;
+  height: 15vh;
+}
+
+a {
+  text-decoration: none;
+  margin-right: 20px;
+  color: black;
+  font-weight: 600;
+}
+
+.btn-main {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100vw;
+  margin: 10px -20px;
+}
+.btn-main button {
+  width: 150px;
+  height: 30px;
+  border: none;
+  margin-top: 20px;
+  border: 2px solid black;
+}
+
+#logBtn {
+  border: none;
+  margin-right: 20px;
+  background-color: rgb(154, 3, 3);
+  color: white;
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+}
+
+#loginBtn {
+  border: none;
+  margin-right: 20px;
+  background-color: black;
+  color: white;
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.title {
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 425px) {
+  .main-navbar {
+    flex-direction: column;
     align-items: center;
-    height: 15vh;
-}
+    height: 20vh;
+  }
 
-a{
-    text-decoration: none;
-    margin-right: 20px;
-    color: black;
-    font-weight: 600;
-}
+  #logBtn {
+    height: 25px;
+    margin-bottom: 40px;
+    font-size: 15px;
+  }
 
-.btn-main{
+  .links {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: flex-end;
-    width: 100vw;
-    margin: 10px -20px;
-}
-.btn-main button{
-    width: 150px;
-    height: 30px;
-    border: none;
-    margin-top: 20px;
-    border: 2px solid black;
+    gap: -5px;
+  }
 }
 
-#logBtn{
-    border: none;
-    margin-right: 20px;
-    background-color:rgb(154, 3, 3);
-    color: white;
-    width: 100px;
-    height: 40px;
-    font-size: 18px;
+@media only screen and (max-width: 375px) {
+  .linkVal {
+    font-size: 13px;
+    display: flex;
+    margin-left: 5px;
+  }
+  #logBtn {
+    height: 25px;
+    margin-bottom: 40px;
+    font-size: 13px;
+  }
 }
 
-#loginBtn{
-    border: none;
-    margin-right: 20px;
-    background-color:black;
-    color: white;
-    width: 100px;
-    height: 40px;
-    font-size: 18px; 
-}
-
-.title{
-    margin-left: 10px;
+@media only screen and (max-width: 320px) {
+  .linkVal {
+    font-size: 11px;
+  }
 }

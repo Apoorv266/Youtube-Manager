@@ -19,7 +19,7 @@ const ExploreCard = ({ videoArray, explVidFunc }) => {
                   />
                   <i className="fas fa-paint-brush"></i>
                   <h3 id="exploretitle">{item.snippet.title.substring(0, 40)}</h3>
-                  <p>Channel : {item.snippet.channelTitle.substring(0,30)}</p>
+                  <p>Channel : {item.snippet.channelTitle.substring(0,10)}</p>
                   <a href={`https://www.youtube.com/watch?v=${item.id.videoId}`} id="vid-Link" target="_blank">
                     Check link
                   </a>

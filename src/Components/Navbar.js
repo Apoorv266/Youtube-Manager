@@ -11,11 +11,13 @@ const Navbar = ({ logout }) => {
           <h3>Youtube Recommender</h3>
         </div>
 
-        <div>
+        <div className='links'>
+          <div className='linkVal'>
           <Link to="/collection">My Collections</Link>
           <Link to="/playlist">My playlists</Link>
           <Link to="/notes">My notes</Link>
           <Link to="/explore">Explore</Link>
+          </div>
           <button onClick={() => logout({ returnTo: window.location.origin })} id="logBtn">Log Out</button>
         </div>
       </div>

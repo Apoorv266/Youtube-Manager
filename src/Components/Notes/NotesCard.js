@@ -7,7 +7,10 @@ import "../../Style/NotesCard.css"
 
 const NotesCard = ({ videoLink, NotesArrFunc, currentVidId, notesArr }) => {
   const [value, setValue] = useState("");
-  const [title, settitle] = useState("")
+  const [title, settitle] = useState("");
+  const [saveMsg, setsaveMsg] = useState(false)
+  
+
 
   useEffect(() => {
     let hasMatch = false
@@ -36,15 +39,20 @@ const NotesCard = ({ videoLink, NotesArrFunc, currentVidId, notesArr }) => {
 
   function handleOnClick() {
     NotesArrFunc(value, title, currentVidId, videoLink)
+    setsaveMsg(true)
+    setTimeout(() => {
+      setsaveMsg(false)
+    }, 1000);
   }
   return (
     <>
       <Navbar />
       <ReactPlayer url={videoLink} controls={true} width={"98.7vw"} />
+        {saveMsg && <h4 style={{color: "white", textAlign: "center"}}>Your note is saved !</h4>}
       <div id="heading-field">
         <label for="heading" style={{
           color: "white",
-          fontSize: "30px"
+          fontSize: "25px"
         }}>Title :</label>
         <input type="text" id="heading" value={title} onChange={(e) => settitle(e.target.value)} />
         <button onClick={handleOnClick} id="saveBtn">Save</button>

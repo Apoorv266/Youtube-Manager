@@ -93,8 +93,6 @@ footer {
   flex-direction: row;
   justify-content :flex-end;
   align-items: end;
-  gap: 20px;
-  
 }
 
 .notesBox {
