@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap");
 
 .main-navbar {
   display: flex;
@@ -24,11 +24,14 @@ a {
   margin: 10px -20px;
 }
 .btn-main button {
-  width: 150px;
+  width: 140px;
   height: 30px;
   border: none;
   margin-top: 20px;
-  border: 2px solid black;
+  background-color: #6a3ad1;
+  color: white;
+  font-size: 15px;
+  border-radius: 20px;
 }
 
 #logBtn {
@@ -42,30 +45,37 @@ a {
   margin-bottom: 20px;
 }
 
-
-
 .title {
   margin-left: 10px;
 }
 
-.links{
+.links {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.logo{
+.logo {
   color: rgb(79, 17, 17);
   font-size: 30px;
   margin-left: 5px;
-  font-family: 'Merriweather Sans', sans-serif;
+  font-family: "Merriweather Sans", sans-serif;
 }
 
-.logoMain{
-  font-family: 'Merriweather Sans', sans-serif;
+.logoMain {
+  font-family: "Merriweather Sans", sans-serif;
   font-size: 30px;
   margin-left: 20px;
 }
+
+@media only screen and (max-width: 768px) {
+  .linkVal {
+    font-size: 14px;
+    display: flex;
+    margin-left: 5px;
+  }
+}
+
 @media only screen and (max-width: 425px) {
   .main-navbar {
     flex-direction: column;
@@ -77,6 +87,7 @@ a {
     height: 25px;
     margin-bottom: 40px;
     font-size: 15px;
+    margin-left: 20px;
   }
 
   .links {
@@ -87,37 +98,46 @@ a {
     gap: -5px;
   }
 
-  .logo{
+  .logo {
     font-size: 25px;
   }
-  
-  .logoMain{
+
+  .logoMain {
     font-size: 25px;
   }
 }
 
-@media only screen and (max-width: 375px) {
+/* @media only screen and (max-width: 425px) {
+  #logBtn {
+    margin-left: 18px;
+  }
+} */
 
+@media only screen and (max-width: 375px) {
   .main-navbar {
     height: 20vh;
   }
   .linkVal {
     font-size: 13px;
-    display: flex;
-    margin-left: 5px;
   }
   #logBtn {
     height: 25px;
     margin-bottom: 40px;
     font-size: 13px;
+    margin-left: 18px;
   }
 
-  .logo{
+  .logo {
     font-size: 20px;
   }
-  
-  .logoMain{
+
+  .logoMain {
     font-size: 20px;
+  }
+
+  .btn-main button {
+    width: 110px;
+    font-size: 12px;
   }
 }
 

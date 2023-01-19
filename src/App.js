@@ -25,11 +25,15 @@ const getStoredDataFunc = () => {
     return JSON.parse(localStorage.getItem(`storageData`))
   }
   else {
-    return []
+    return {
+      videoData: [],
+      playlistName: [],
+      playlistObj: [],
+      videoIds: [],
+      notesArr: []
+    }
   }
 }
-
-
 
 function App() {
 
@@ -50,17 +54,27 @@ function App() {
   const [notesArr, setnotesArr] = useState(getStoredDataFunc().notesArr)
   const [dispModal, setdispModal] = useState(false)
 
+
+
   useEffect(() => {
     let obj = {
-      videoData: videoData,
-      playlistName: playlistName,
-      playlistObj: playlistObj,
-      videoIds: videoIds,
-      notesArr: notesArr
+      videoData: [],
+      playlistName: [],
+      playlistObj: [],
+      videoIds: [],
+      notesArr: []
     }
+
+    if (videoData !== undefined || playlistName !== undefined || playlistObj !== undefined || videoIds !== undefined|| notesArr !== undefined) {
+      obj.videoData = videoData
+      obj.playlistName = playlistName
+      obj.playlistObj = playlistObj
+      obj.videoIds = videoIds
+      obj.notesArr = notesArr
+    }
+    
     localStorage.setItem("storageData", JSON.stringify(obj))
-   
-  }, [videoData, playlistObj, playlistName, videoIds, notesArr, editplaylistFunc])
+  }, [videoData, playlistObj, playlistName, videoIds, notesArr])
 
 
 

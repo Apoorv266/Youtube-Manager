@@ -1,10 +1,10 @@
 import React from 'react'
 import "../Style/Navbar.css"
 
-const Add = ({openFormFunc}) => {
+const Add = ({openFormFunc, text}) => {
   return (
     <div className='btn-main'>
-    <img src={require("../Assets/117885.png")}  alt="" srcset="" width={"50px"} onClick={openFormFunc}/>
+    <button alt="" srcset="" width={"50px"} onClick={openFormFunc}>{text}</button>
     </div>
   )
 }

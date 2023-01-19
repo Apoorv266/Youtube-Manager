@@ -10,6 +10,7 @@ const Playlist = ({ playlistName, handlePlayListFunc, logout, playlistVideoFunc,
   const [toggleNewPlaylistForm, settoggleNewPlaylistForm] = useState(false)
   const [input, setinput] = useState("")
   const [dispErrorMsg, setdispErrorMsg] = useState(false)
+  let playtext = "Add new playlist"
 
   function openNewPlaylistFunc() {
     settoggleNewPlaylistForm(true)
@@ -45,7 +46,7 @@ const Playlist = ({ playlistName, handlePlayListFunc, logout, playlistVideoFunc,
     <>
       <Navbar logout={logout} />
 
-      <Add openFormFunc={openNewPlaylistFunc} />
+      <Add openFormFunc={openNewPlaylistFunc} text={playtext}/>
 
       {toggleNewPlaylistForm && <NewPlaylistForm CloseNewPlaylistFunc={CloseNewPlaylistFunc} input={input} setinput={setinput} newplaylistFunc={newplaylistFunc} dispErrorMsg={dispErrorMsg}/>}
 
