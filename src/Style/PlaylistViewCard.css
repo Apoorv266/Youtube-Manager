@@ -127,5 +127,11 @@
     .col {
       height: 70px;
     }
+
+    #inputbox{
+      width: 210px;
+      height: 30px;
+      margin-left: -5px;
+    }
   }
   
