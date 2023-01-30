@@ -30,7 +30,9 @@ const getStoredDataFunc = () => {
       playlistName: [],
       playlistObj: [],
       videoIds: [],
-      notesArr: []
+      notesArr: [],
+      videoLink: "",
+      currentVidId: ""
     }
   }
 }
@@ -49,8 +51,8 @@ function App() {
   const [videoIds, setvideoIds] = useState(getStoredDataFunc().videoIds)
 
   // useStates for notes
-  const [videoLink, setvideoLink] = useState("")
-  const [currentVidId, setcurrentVidId] = useState("")
+  const [videoLink, setvideoLink] = useState(getStoredDataFunc().videoLink)
+  const [currentVidId, setcurrentVidId] = useState(getStoredDataFunc().currentVidId)
   const [notesArr, setnotesArr] = useState(getStoredDataFunc().notesArr)
   const [dispModal, setdispModal] = useState(false)
 
@@ -62,19 +64,28 @@ function App() {
       playlistName: [],
       playlistObj: [],
       videoIds: [],
-      notesArr: []
+      notesArr: [],
+      videoLink: "",
+      currentVidId: ""
     }
 
-    if (videoData !== undefined || playlistName !== undefined || playlistObj !== undefined || videoIds !== undefined|| notesArr !== undefined) {
+    if (videoData !== undefined || playlistName !== undefined || playlistObj !== undefined || videoIds !== undefined || notesArr !== undefined || videoLink !== "" || currentVidId !== "") {
       obj.videoData = videoData
       obj.playlistName = playlistName
       obj.playlistObj = playlistObj
       obj.videoIds = videoIds
       obj.notesArr = notesArr
+      obj.videoLink = videoLink
+      obj.currentVidId = currentVidId
     }
-    
+
     localStorage.setItem("storageData", JSON.stringify(obj))
-  }, [videoData, playlistObj, playlistName, videoIds, notesArr])
+  }, [videoData, playlistObj, playlistName, videoIds, notesArr, videoLink, currentVidId])
+
+  useEffect(() => {
+    console.log("useeffect",notesArr );
+  }, [notesArr])
+  
 
 
 
@@ -337,6 +348,7 @@ function App() {
   }
 
   function NotesArrFunc(value, title, id, videoLink) {
+    let copyArr = [...notesArr]
     let obj = {
       itemId: id,
       title: title,
@@ -356,19 +368,19 @@ function App() {
 
     // if video exists then update the value
     if (hasMatch) {
-      notesArr.map((item) => {
+      copyArr.map((item) => {
         if (item.itemId === id) {
           item.title = title
           item.content = value
         }
       })
+      setnotesArr(copyArr)
     }
     // if video does not exist push a fresh new object
     else {
       setnotesArr([...notesArr, obj])
     }
   }
-
 
   function accessNotesFunc(id, videoUrl) {
     setcurrentVidId(id)

@@ -5,11 +5,13 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../../Style/NotesCard.css"
 
-const NotesCard = ({ videoLink, NotesArrFunc, currentVidId, notesArr }) => {
+const NotesCard = ({ videoLink, NotesArrFunc, currentVidId, notesArr}) => {
   const [value, setValue] = useState("");
   const [title, settitle] = useState("");
   const [saveMsg, setsaveMsg] = useState(false)
   
+  // console.log("LINK -", videoLink);
+  // console.log("notes array -", notesArr);
 
 
   useEffect(() => {
@@ -38,6 +40,7 @@ const NotesCard = ({ videoLink, NotesArrFunc, currentVidId, notesArr }) => {
 
 
   function handleOnClick() {
+    console.log("id", currentVidId);
     NotesArrFunc(value, title, currentVidId, videoLink)
     setsaveMsg(true)
     setTimeout(() => {
