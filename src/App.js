@@ -82,13 +82,6 @@ function App() {
     localStorage.setItem("storageData", JSON.stringify(obj))
   }, [videoData, playlistObj, playlistName, videoIds, notesArr, videoLink, currentVidId])
 
-  useEffect(() => {
-    console.log("useeffect",notesArr );
-  }, [notesArr])
-  
-
-
-
   function openFormFunc() {
     settoggleForm(true)
   }
