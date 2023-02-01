@@ -5,7 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "../../Style/NotesCard.css"
 
-const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink, saveMsgFunc }) => {
+const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink }) => {
     const [value, setValue] = useState("");
     const [title, settitle] = useState("");
     const [saveMsg, setsaveMsg] = useState(false)
@@ -37,17 +37,19 @@ const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink, saveMsgFu
 
 
     function handleOnClick() {
-        NotesArrFunc(value, title, currentVidId, videoLink)
         setsaveMsg(true)
-    
-
+        // setTimeout(() => {
+            NotesArrFunc(value, title, currentVidId, videoLink)
+        // }, 1010);
+        setTimeout(() => {
+            setsaveMsg(false)
+        }, 1000);
     }
 
 
     return (
 
         <>
-            {saveMsg && <h4 style={{ color: "white", textAlign: "center" }}>Your note is saved !</h4>}
             <div id="heading-field">
                 <label for="heading" style={{
                     color: "white",
@@ -57,6 +59,11 @@ const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink, saveMsgFu
                 <button onClick={handleOnClick} id="saveBtn">Save</button>
             </div>
 
+            {saveMsg && (
+                <h4 style={{ color: "white", textAlign: "center" }}>
+                    Your note is getting saved !
+                </h4>
+            )}
 
             <div>
                 <ReactQuill

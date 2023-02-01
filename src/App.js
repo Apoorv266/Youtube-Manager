@@ -55,7 +55,7 @@ function App() {
   const [currentVidId, setcurrentVidId] = useState(getStoredDataFunc().currentVidId)
   const [notesArr, setnotesArr] = useState(getStoredDataFunc().notesArr)
   const [dispModal, setdispModal] = useState(false)
-
+  const [saveMsg, setSaveMsg] = useState(false)
 
 
   useEffect(() => {
@@ -386,6 +386,10 @@ function App() {
     setnotesArr(arr)
   }
 
+  function handleSaveMsg(value) {
+    setSaveMsg(value)
+  }
+
   return (
     <>
       <Routes>
@@ -404,7 +408,7 @@ function App() {
 
         <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} deleteNotesFunc={deleteNotesFunc} />} />
 
-        <Route path="/notes/myNote" element={<ProtectedRoute component={NotesCard} videoLink={videoLink} NotesArrFunc={NotesArrFunc} currentVidId={currentVidId} notesArr={notesArr} />} />
+        <Route path="/notes/myNote" element={<ProtectedRoute component={NotesCard} videoLink={videoLink} NotesArrFunc={NotesArrFunc} currentVidId={currentVidId} notesArr={notesArr}  handleSaveMsg={handleSaveMsg} saveMsg={saveMsg}/>} />
 
 
 
