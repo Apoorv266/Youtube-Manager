@@ -38,9 +38,9 @@ const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink }) => {
 
     function handleOnClick() {
         setsaveMsg(true)
-        // setTimeout(() => {
-            NotesArrFunc(value, title, currentVidId, videoLink)
-        // }, 1010);
+        setTimeout(() => {
+        NotesArrFunc(value, title, currentVidId, videoLink)
+        }, 1010);
         setTimeout(() => {
             setsaveMsg(false)
         }, 1000);
@@ -50,6 +50,11 @@ const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink }) => {
     return (
 
         <>
+            {saveMsg && (
+                <h4 style={{ color: "white", textAlign: "center" }}>
+                    Your note is getting saved !
+                </h4>
+            )}
             <div id="heading-field">
                 <label for="heading" style={{
                     color: "white",
@@ -59,11 +64,6 @@ const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink }) => {
                 <button onClick={handleOnClick} id="saveBtn">Save</button>
             </div>
 
-            {saveMsg && (
-                <h4 style={{ color: "white", textAlign: "center" }}>
-                    Your note is getting saved !
-                </h4>
-            )}
 
             <div>
                 <ReactQuill
