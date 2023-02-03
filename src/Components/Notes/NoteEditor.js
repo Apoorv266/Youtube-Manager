@@ -40,10 +40,10 @@ const NoteEditor = ({ NotesArrFunc, currentVidId, notesArr, videoLink }) => {
         setsaveMsg(true)
         setTimeout(() => {
         NotesArrFunc(value, title, currentVidId, videoLink)
-        }, 1010);
+        }, 800);
         setTimeout(() => {
             setsaveMsg(false)
-        }, 1000);
+        }, 500);
     }
 
 
