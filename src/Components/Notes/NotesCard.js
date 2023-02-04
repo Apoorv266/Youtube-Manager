@@ -8,7 +8,7 @@ const NotesCard = ({
   videoLink,
   NotesArrFunc,
   currentVidId,
-  notesArr,handleSaveMsg,saveMsg
+  notesArr
 }) => {
   return (
     <>
