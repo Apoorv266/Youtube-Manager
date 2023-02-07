@@ -3,10 +3,10 @@ import Navbar from "../Navbar";
 import "../../Style/Notes.css";
 import { Link } from "react-router-dom";
 
-const Notes = ({ notesArr, accessNotesFunc, deleteNotesFunc }) => {
+const Notes = ({ notesArr, accessNotesFunc, deleteNotesFunc , logout }) => {
   return (
     <>
-      <Navbar />
+      <Navbar logout={logout} />
       <div class="container">
         {notesArr.length === 0 ? (
           <h3 style={{textAlign : "center", color : "white"}}>Currently there are no notes !</h3>

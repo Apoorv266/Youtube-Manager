@@ -4,40 +4,47 @@ import "../Style/Videocard.css";
 import AddToPlaylistForm from "./AddToPlaylistForm";
 import DeleteModal from "./Notes/DeleteModal";
 
-
-const Videocard = ({ videoData, deleteCard, captureFunc, playlistName , notesWindowFunc, dispModal, dltNoteFunc, keepNoteFunc}) => {
+const Videocard = ({ videoData, deleteCard, captureFunc, playlistName, notesWindowFunc, dispModal, dltNoteFunc, keepNoteFunc, hideNoteVidFunc }) => {
   const [toggleplayForm, settoggleplayForm] = useState(false);
   const [itemToForm, setitemToForm] = useState("");
+  const [dltId, setdltId] = useState(null)
 
+  function handleDeleteNoteFunc(videoId, videoLink) {
+    setdltId(videoId)
+    deleteCard(videoId, videoLink)
+  }
+  
   function togglePlayFunc(e, item) {
     e.preventDefault();
     setitemToForm(item);
     settoggleplayForm(true);
   }
-
+  
   function closePlayFunc() {
     settoggleplayForm(false);
   }
+  
+  console.log("dltId", !!dltId);
+  console.log("dltId", dltId);
   return (
-    <section className="card-container">
-      {videoData.map((item) => {
-        return (
-          <>
+    <>
+      <section className="card-container">
+        {videoData.map((item) => {
+          return (
             <div className="mainCard">
               <div className="utility">
                 <div>
                   <Link to={"/notes/myNote"}>
-                  <button className="notesBox" onClick={()=>notesWindowFunc(item.link, item.id)}>Notes</button>
+                    <button className="notesBox" onClick={() => notesWindowFunc(item.link, item.id)}>Notes</button>
                   </Link>
                 </div>
                 <div>
                   <button
                     className="notesBox"
-                    onClick={(e) => deleteCard(item.id, item.link.slice(-11))}
+                    onClick={() => handleDeleteNoteFunc(item.id, item.link.slice(-11))}
                   >
                     Delete
                   </button>
-                  {dispModal && <DeleteModal dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} currId={item.id}/>}
                 </div>
               </div>
               <div className="card" key={item.id}>
@@ -77,12 +84,43 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName , notesWin
                 </button>
               </div>
             </div>
-          </>
-        );
+          );
 
-      })}
-    </section>
+        })}
+
+        {!!dltId && <DeleteModal dltId={dltId} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} hideNoteVidFunc={hideNoteVidFunc} setdltId={setdltId}/>}
+      </section>
+    </>
   );
 };
 
 export default Videocard;
+
+// import React from 'react'
+
+// function ParentComp() {
+//   const [Data, setData] = useState()
+//   function testFunc(val) {
+//     setData(val)
+//   }
+//   return (
+//     <childComp testFunc={testFunc}/>
+//   )
+// }
+
+// export default ParentComp
+
+// import React from 'react'
+
+// function childComp({testFunc}) {
+//   const [childData, setchildData] = useState("")
+//   function ChildFunc() {
+//     setchildData("Test2")
+//     testFunc("test1")
+//   }
+//   return (
+//   <button onClick={ChildFunc}>Click</button>
+//   )
+// }
+
+// export default childComp

@@ -10,3 +10,16 @@
     border-radius: 30px;
     position: absolute;
 }
+
+#noteFrmClose{
+    margin-left: 240px;
+    cursor: pointer;
+}
+
+
+@media only screen and (min-width: 1024px) {
+    #noteFrmClose{
+        margin-left: 240px;
+        margin-bottom: 5px;
+    }
+  }

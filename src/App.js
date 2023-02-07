@@ -54,7 +54,7 @@ function App() {
   const [videoLink, setvideoLink] = useState(getStoredDataFunc().videoLink)
   const [currentVidId, setcurrentVidId] = useState(getStoredDataFunc().currentVidId)
   const [notesArr, setnotesArr] = useState(getStoredDataFunc().notesArr)
-  const [dispModal, setdispModal] = useState(false)
+  const [dispModal, setdispModal] = useState(true)
   const [saveMsg, setsaveMsg] = useState(false)
 
 const handleSaveMsg = () => {
@@ -140,16 +140,14 @@ const handleSaveMsg = () => {
         break
       }
     }
-    if (hasMatch) {
-      setdispModal(true)
-    } else {
+    if (!hasMatch) {
       keepNoteFunc(id)
     }
   }
 
   // delete video + its note
   function dltNoteFunc(id) {
-    setdispModal(false)
+    // setdispModal(false)
     let arr = videoData.filter(item => {
       return item.id !== id
     })
@@ -162,12 +160,12 @@ const handleSaveMsg = () => {
 
     let newNoteArr = notesArr.filter((item) => item.itemId !== id)
     setnotesArr(newNoteArr)
-
+    console.log("vid + note func", id);
   }
 
   // only delete video from collection 
   function keepNoteFunc(id) {
-    setdispModal(false)
+
     let arr = videoData.filter(item => {
       return item.id !== id
     })
@@ -177,7 +175,10 @@ const handleSaveMsg = () => {
       return item.id !== id
     })
     setvideoIds(newArr)
+    console.log("only vid",id);
   }
+  // console.log("after notesArr",notesArr);
+  // console.log("after videoData",videoData);
 
 
   function captureFunc(e, item, dropdown) {
@@ -394,16 +395,20 @@ const handleSaveMsg = () => {
     setnotesArr(arr)
   }
 
+  //hide Delete video + note form
+  function hideNoteVidFunc() {
+    // setdispModal(false)
+    // console.log(dispModal); 
+  } 
 
   return (
     <>
       <Routes>
-
         <Route path="/" element={<Homepage logout={logout} loginWithRedirect={loginWithRedirect} isAuthenticated={isAuthenticated} />} />
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} />} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} hideNoteVidFunc={hideNoteVidFunc}/>} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 
@@ -411,7 +416,7 @@ const handleSaveMsg = () => {
         <Route path="/playlist/1" element={<ProtectedRoute component={PlaylistComponent} playlistId={playlistVideoCardId} playlistObj={playlistObj} dltVideoPlaylist={dltVideoPlaylist} notesWindowFunc={notesWindowFunc} />} />
 
 
-        <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} deleteNotesFunc={deleteNotesFunc} />} />
+        <Route path="/notes" element={<ProtectedRoute component={Notes} notesArr={notesArr} accessNotesFunc={accessNotesFunc} deleteNotesFunc={deleteNotesFunc} logout={logout}/>} />
 
         <Route path="/notes/myNote" element={<ProtectedRoute component={NotesCard} videoLink={videoLink} NotesArrFunc={NotesArrFunc} currentVidId={currentVidId} notesArr={notesArr} handleSaveMsg={handleSaveMsg} saveMsg={saveMsg}/>} />
 
