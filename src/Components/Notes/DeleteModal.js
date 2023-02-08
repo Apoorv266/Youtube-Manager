@@ -6,16 +6,14 @@ const DeleteModal = ({ dltNoteFunc, keepNoteFunc, dltId , hideNoteVidFunc, setdl
 
     function handlClickFunc1(e) {
         e.preventDefault()
+        setdltId(null) 
         dltNoteFunc(dltId)
-        setdltId(null)
-        console.log('currId', dltId);
     }
 
     function handlClickFunc2(e) {
         e.preventDefault()
         setdltId(null)
         keepNoteFunc(dltId)
-        console.log("currId",dltId);
     }
 
     return (

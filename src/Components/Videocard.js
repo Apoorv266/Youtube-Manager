@@ -12,6 +12,7 @@ const Videocard = ({ videoData, deleteCard, captureFunc, playlistName, notesWind
   function handleDeleteNoteFunc(videoId, videoLink) {
     setdltId(videoId)
     deleteCard(videoId, videoLink)
+    console.log(dltId)
   }
   
   function togglePlayFunc(e, item) {
