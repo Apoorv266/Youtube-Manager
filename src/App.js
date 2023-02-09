@@ -10,6 +10,7 @@ import Playlist from "./Components/Playlist";
 import PlaylistComponent from "./Components/PlaylistComponent";
 import Notes from "./Components/Notes/Notes";
 import NotesCard from "./Components/Notes/NotesCard";
+import { useNavigate } from "react-router-dom";
 
 
 const options = {
@@ -40,6 +41,7 @@ const getStoredDataFunc = () => {
 function App() {
 
   const { loginWithRedirect, logout, isAuthenticated } = useAuth0();
+  const navigate = useNavigate();
 
   const [toggleForm, settoggleForm] = useState(false);
   const [videoData, setvideoData] = useState(getStoredDataFunc().videoData);
@@ -89,6 +91,17 @@ const handleSaveMsg = () => {
 
     localStorage.setItem("storageData", JSON.stringify(obj))
   }, [videoData, playlistObj, playlistName, videoIds, notesArr, videoLink, currentVidId])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/collection");
+    }
+    else{
+      navigate("/");
+    }
+    console.log(isAuthenticated)
+  }, [isAuthenticated])
+  
 
   function openFormFunc() {
     settoggleForm(true)
