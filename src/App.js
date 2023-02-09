@@ -175,7 +175,7 @@ const handleSaveMsg = () => {
       return item.id !== id
     })
     setvideoIds(newArr)
-    console.log("only vid",id);
+    // console.log("only vid",id);
   }
   // console.log("after notesArr",notesArr);
   // console.log("after videoData",videoData);
