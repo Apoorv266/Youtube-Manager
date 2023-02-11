@@ -99,7 +99,6 @@ const handleSaveMsg = () => {
     else{
       navigate("/");
     }
-    console.log(isAuthenticated)
   }, [isAuthenticated])
   
 
@@ -173,7 +172,6 @@ const handleSaveMsg = () => {
 
     let newNoteArr = notesArr.filter((item) => item.itemId !== id)
     setnotesArr(newNoteArr)
-    console.log("vid + note func", id);
   }
 
   // only delete video from collection 
@@ -188,10 +186,7 @@ const handleSaveMsg = () => {
       return item.id !== id
     })
     setvideoIds(newArr)
-    // console.log("only vid",id);
   }
-  // console.log("after notesArr",notesArr);
-  // console.log("after videoData",videoData);
 
 
   function captureFunc(e, item, dropdown) {
@@ -408,12 +403,6 @@ const handleSaveMsg = () => {
     setnotesArr(arr)
   }
 
-  //hide Delete video + note form
-  function hideNoteVidFunc() {
-    // setdispModal(false)
-    // console.log(dispModal); 
-  } 
-
   return (
     <>
       <Routes>
@@ -421,7 +410,7 @@ const handleSaveMsg = () => {
 
         <Route path="/explore" element={<ProtectedRoute component={Explore} videoIds={videoIds} explVidFunc={explVidFunc} logout={logout} />} />
 
-        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc} hideNoteVidFunc={hideNoteVidFunc}/>} />
+        <Route path="/collection" element={<ProtectedRoute component={AddVid} logout={logout} toggleForm={toggleForm} closeFormFunc={closeFormFunc} deleteCard={deleteCard} fetchFunc={fetchFunc} videoData={videoData} openFormFunc={openFormFunc} captureFunc={captureFunc} playlistName={playlistName} notesWindowFunc={notesWindowFunc} dispModal={dispModal} dltNoteFunc={dltNoteFunc} keepNoteFunc={keepNoteFunc}/>} />
 
         <Route path="/playlist" element={<ProtectedRoute component={Playlist} playlistName={playlistName} logout={logout} handlePlayListFunc={handlePlayListFunc} playlistVideoFunc={playlistVideoFunc} dltPlaylist={dltPlaylist} displayInputPlaylist={displayInputPlaylist} InputView={InputView} cancelEditFunc={cancelEditFunc} playlistId={playlistId} editplaylistFunc={editplaylistFunc} />} />
 

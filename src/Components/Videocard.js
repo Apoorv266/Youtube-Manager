@@ -22,7 +22,6 @@ const Videocard = ({
   function handleDeleteNoteFunc(videoId, videoLink) {
     setdltId(videoId);
     deleteCard(videoId, videoLink);
-    // console.log(dltId);
   }
 
   function togglePlayFunc(e, item) {
@@ -35,8 +34,6 @@ const Videocard = ({
     settoggleplayForm(false);
   }
 
-  // console.log("dltId", !!dltId);
-  // console.log("dltId", dltId);
   return (
     <>
       <section className="card-container">

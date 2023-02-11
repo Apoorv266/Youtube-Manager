@@ -11,8 +11,8 @@ root.render(
   <Auth0Provider
     domain="dev-8tlt1ay2nvpy7i3f.us.auth0.com"
     clientId="CYBWuf4MYPlPtsZ4irVdmLK1JteBuU3D"
-    redirectUri="http://localhost:3000/collection"
-    // redirectUri="https://youtubebuddy.netlify.app/collection"
+    // redirectUri="http://localhost:3000/collection"
+    redirectUri="https://youtubebuddy.netlify.app/collection"
   >
 
     <App />
