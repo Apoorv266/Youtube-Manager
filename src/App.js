@@ -92,14 +92,14 @@ const handleSaveMsg = () => {
     localStorage.setItem("storageData", JSON.stringify(obj))
   }, [videoData, playlistObj, playlistName, videoIds, notesArr, videoLink, currentVidId])
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate("/collection");
-    }
-    else{
-      navigate("/");
-    }
-  }, [isAuthenticated])
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     navigate("/collection");
+  //   }
+  //   else{
+  //     navigate("/");
+  //   }
+  // }, [isAuthenticated])
   
 
   function openFormFunc() {
